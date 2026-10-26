@@ -7,11 +7,12 @@ services:
     container_name: guayaba-velez
     restart: unless-stopped
 
-    # APP_PORT = puerto en el host. En Coolify normalmente no hace falta
-    # publicarlo (el proxy enrutiza por el puerto del contenedor); ajústalo
-    # solo si necesitas acceder por SSH o si el puerto 8000 está ocupado.
-    ports:
-      - "${APP_PORT:-8000}:8000"
+    # Sin "ports": el proxy de Coolify llega al contenedor por la red interna
+    # (puerto 8000), así que no se publica nada en el host. Publicar el 8000
+    # chocaba con otro servicio del servidor ("port is already allocated").
+    # Para acceso directo fuera de Coolify, usa docker-compose.local.yml.
+    expose:
+      - "8000"
 
     environment:
       # OBLIGATORIO definirla en Coolify. Genera una con:

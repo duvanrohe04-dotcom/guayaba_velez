@@ -1,0 +1,7 @@
+# Solo para servidores SIN proxy (sin Coolify): publica el puerto en el host.
+# Uso:  docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
+# APP_PORT cambia el puerto del host si el 8000 está ocupado.
+services:
+  app:
+    ports:
+      - "${APP_PORT:-8000}:8000"
