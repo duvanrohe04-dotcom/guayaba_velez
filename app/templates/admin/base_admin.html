@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Panel Admin{% endblock %} — Guayaba Veleña</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  {% include 'partials/head_marca.html' %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/marca.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-pro.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fondos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fotos.css') }}">
+</head>
+<body>
+
+  {% if current_user.is_authenticated %}
+  <nav class="admin-nav">
+    <div class="admin-nav-brand">
+      <img src="{{ marca_logo }}" alt="" class="nav-logo">
+      Panel Admin · {{ marca_nombre }}
+    </div>
+    <div class="admin-nav-links">
+      <a href="{{ url_for('admin.dashboard') }}">🏠 Inicio</a>
+      <a href="{{ url_for('public.index') }}" target="_blank" rel="noopener">🌐 Ver sitio</a>
+      <a href="{{ url_for('admin.editar_empresa') }}">⚙️ Empresa</a>
+      <a href="{{ url_for('admin.cuenta') }}">🔑 Acceso</a>
+      <a href="{{ url_for('auth.logout') }}" class="logout">🚪 Salir</a>
+    </div>
+  </nav>
+  {% endif %}
+
+  <div class="admin-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for categoria, mensaje in messages %}
+        <div class="flash {{ categoria }}">{{ mensaje }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>

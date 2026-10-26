@@ -1,0 +1,140 @@
+/* Fondos fotográficos naturales: la foto de la plantación se ve, con un velo
+   verde oscuro suave como en la sección "Fincas Buena Vista & El Placer".
+   Se carga al final y reemplaza los degradados verdes planos. */
+:root {
+  --verde-bosque: #2d5a27;
+  --verde-medio:  #3e7a35;
+  --verde-claro:  #5a9e4f;
+  --verde-lima:   #7bbb6e;
+  --bosque-1: #14301a;
+  --bosque-2: #1f4a22;
+  --bosque-3: #2f6a2f;
+  --esm-1: #14301a; --esm-2: #1f4a22; --esm-3: #2f6a2f; --esm-4: #5a9e4f;
+  --foto: url("../img/guayaba_hero.png");
+  --velo-izq: linear-gradient(90deg, rgba(14,36,14,0.82) 0%, rgba(14,36,14,0.52) 50%, rgba(14,36,14,0.18) 100%);
+  --velo-abajo: linear-gradient(to bottom, rgba(14,36,14,0.10) 0%, rgba(14,36,14,0.55) 100%);
+}
+
+/* HERO: laderas de la plantación de fondo */
+.hero {
+  background:
+    var(--velo-izq),
+    var(--velo-abajo),
+    var(--foto) center 12% / cover no-repeat;
+}
+.hero::before { display: none; }
+.hero h2, .hero-sub { text-shadow: 0 2px 14px rgba(0,0,0,0.5); }
+.hero-label, .hero-chips li { background: rgba(14,36,14,0.45); border-color: rgba(255,255,255,0.35); backdrop-filter: blur(8px); }
+
+/* Barra superior y cinta: verde natural y limpio */
+.topbar { background: #1b3d1d; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.ticker-wrap { background: #234f26; border-top: 1px solid rgba(255,255,255,0.10); border-bottom: 1px solid rgba(0,0,0,0.2); }
+.ticker-wrap::before { background: linear-gradient(to right, #234f26, transparent); }
+.ticker-wrap::after  { background: linear-gradient(to left, #234f26, transparent); }
+.ticker-item .ticker-dot { background: #f4f08a; box-shadow: 0 0 6px #f4f08a; }
+
+/* Cita, banner regional, cierre: foto visible con velo ligero */
+.quote-section {
+  background:
+    linear-gradient(135deg, rgba(14,36,14,0.72), rgba(14,36,14,0.50)),
+    var(--foto) center 30% / cover no-repeat;
+}
+.regional-banner {
+  background:
+    linear-gradient(180deg, rgba(14,36,14,0.70) 0%, rgba(14,36,14,0.48) 50%, rgba(14,36,14,0.78) 100%),
+    var(--foto) center 45% / cover no-repeat;
+}
+.cta-section {
+  background:
+    linear-gradient(160deg, rgba(14,36,14,0.74), rgba(14,36,14,0.55)),
+    var(--foto) 70% 85% / cover no-repeat;
+}
+.site-footer {
+  background:
+    linear-gradient(180deg, rgba(10,26,10,0.90), rgba(10,26,10,0.96)),
+    var(--foto) center 20% / cover no-repeat;
+}
+.quote-text, .cta-title, .cta-sub, .regional-title { text-shadow: 0 2px 16px rgba(0,0,0,0.55); }
+.quote-section::before, .cta-section::before { z-index: 1; }
+
+/* Acentos verdes naturales (sin neón) */
+.section-label { background: linear-gradient(135deg, #1f4a22, #3e7a35); }
+.tl-dot, .feat-icon, .quality-card::before { background: linear-gradient(135deg, #5a9e4f, #1f4a22); }
+.tl-dot { box-shadow: 0 12px 24px rgba(31,74,34,0.35), 0 0 0 7px rgba(90,158,79,0.20); }
+.nav-links .btn-contacto { background: linear-gradient(135deg, #f08a7e, #d9625a); }
+.btn-primary { color: #1f4a22; }
+.btn-ghost:hover, .btn-cta { color: #1f4a22; }
+
+/* Panel de administración con las mismas fotos */
+.admin-nav { background: #1b3d1d; }
+.welcome {
+  background:
+    linear-gradient(120deg, rgba(14,36,14,0.85) 0%, rgba(14,36,14,0.55) 60%, rgba(14,36,14,0.25) 100%),
+    var(--foto) center 20% / cover no-repeat;
+}
+.login-wrap {
+  background:
+    linear-gradient(160deg, rgba(14,36,14,0.70), rgba(14,36,14,0.55)),
+    var(--foto) center / cover no-repeat;
+}
+.page-header {
+  background:
+    linear-gradient(120deg, rgba(14,36,14,0.88), rgba(14,36,14,0.55)),
+    var(--foto) center 25% / cover no-repeat;
+}
+
+/* ══ CABECERA: barra superior, menú y cinta con el mismo estilo ══ */
+.topbar {
+  background:
+    linear-gradient(90deg, rgba(14,36,14,0.92), rgba(14,36,14,0.70)),
+    var(--foto) center 8% / cover no-repeat;
+  padding: 0.5rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(244,240,138,0.25);
+}
+.topbar-badge {
+  background: rgba(244,240,138,0.16); border: 1px solid rgba(244,240,138,0.55);
+  color: #f7f3a0; font-weight: 700; letter-spacing: 0.1em;
+  padding: 0.3rem 1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+.topbar-icons a {
+  width: 32px; height: 32px; font-size: 0.9rem;
+  background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35);
+  transition: transform .25s ease, background .25s ease;
+}
+.topbar-icons a:hover { background: #f08a7e; border-color: #f08a7e; transform: translateY(-2px); }
+
+.site-header {
+  background: rgba(255,252,247,0.92);
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, #f08a7e, #f4f08a 50%, #5a9e4f) 1;
+  padding: 0.85rem clamp(1rem, 4vw, 3rem);
+}
+.brand { gap: 0.9rem; }
+.brand img { height: 58px; width: 58px; border: 3px solid #fff; outline: 3px solid #f08a7e; box-shadow: 0 8px 20px rgba(217,98,90,0.35); }
+.brand-name h1 { font-size: 1.4rem; letter-spacing: -0.01em; color: #14301a; }
+.brand-name span { color: #d9625a; font-size: 0.68rem; letter-spacing: 0.14em; }
+.nav-links a:not(.btn-contacto) { font-weight: 600; color: #3d5a38; font-size: 0.92rem; }
+.nav-links a:not(.btn-contacto):hover { color: #14301a; }
+
+.ticker-wrap {
+  background:
+    linear-gradient(90deg, rgba(14,36,14,0.90), rgba(14,36,14,0.72)),
+    var(--foto) center 55% / cover no-repeat;
+  padding: 0.7rem 0;
+  border-top: none; border-bottom: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 22px rgba(14,36,14,0.25);
+}
+.ticker-wrap::before { background: linear-gradient(to right, rgba(14,36,14,0.95), transparent); width: 90px; }
+.ticker-wrap::after  { background: linear-gradient(to left, rgba(14,36,14,0.95), transparent); width: 90px; }
+.ticker-item {
+  margin: 0 0.5rem; padding: 0.35rem 1.1rem; font-style: normal; font-weight: 600; font-size: 0.84rem;
+  background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 999px; backdrop-filter: blur(6px);
+}
+.ticker-item .ticker-dot { width: 7px; height: 7px; background: #f08a7e; box-shadow: 0 0 8px #f08a7e; }
+
+@media (max-width: 639px) {
+  .brand img { height: 46px; width: 46px; }
+  .brand-name h1 { font-size: 1.15rem; }
+  .topbar { justify-content: center; }
+}

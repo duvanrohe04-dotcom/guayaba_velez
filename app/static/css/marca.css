@@ -1,0 +1,10 @@
+/* Logo del panel en nav del admin, login y pie del sitio. */
+.nav-logo { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.7); background: #fff; flex-shrink: 0; }
+.login-logo-img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.8rem; border: 3px solid var(--verde-c); box-shadow: var(--s-m); background: #fff; }
+.admin-nav { background: linear-gradient(160deg, #1c3a19, #2b5226); }
+.login-wrap {
+  background:
+    linear-gradient(160deg, rgba(18,38,15,0.88), rgba(12,30,10,0.95)),
+    url("../img/guayaba_hero.png") center / cover no-repeat;
+}
+.footer-logo-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.7rem; border: 3px solid rgba(255,255,255,0.35); background: #fff; }

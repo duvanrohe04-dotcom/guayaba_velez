@@ -1,0 +1,138 @@
+/* Verdes mejorados: profundidad, luz, ondas y textura de hoja.
+   Se carga después de style.css y sobrescribe sus fondos verdes planos. */
+:root {
+  --verde-profundo: #163a14;
+  --ola-blanca: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0 0h1440v30c-120 36-240 50-360 40S840 20 720 18 480 50 360 62 120 54 0 30z'/%3E%3C/svg%3E");
+}
+
+/* Barra superior y ticker: degradado con brillo en vez de verde plano */
+.topbar {
+  background: linear-gradient(90deg, var(--verde-profundo), var(--verde-bosque) 50%, var(--verde-profundo));
+  border-bottom: 1px solid rgba(244,240,138,0.25);
+}
+.ticker-wrap {
+  background: linear-gradient(180deg, #2f6a29 0%, var(--verde-bosque) 100%);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.ticker-wrap::before { background: linear-gradient(to right, #2a5e24, transparent); }
+.ticker-wrap::after  { background: linear-gradient(to left, #2a5e24, transparent); }
+.ticker-item .ticker-dot { background: var(--guayaba); opacity: 1; box-shadow: 0 0 8px var(--guayaba); }
+
+/* Hero: luces suaves + nervadura de hoja en lugar del patrón de "+" */
+.hero {
+  background:
+    radial-gradient(ellipse 60% 70% at 85% 25%, rgba(240,138,126,0.30), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 8% 95%, rgba(244,240,138,0.20), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,255,255,0.14), transparent 70%),
+    linear-gradient(165deg, #1b4318 0%, var(--verde-bosque) 35%, var(--verde-medio) 70%, #6fae5f 100%);
+}
+.hero::before {
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 46px),
+    repeating-linear-gradient(65deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 70px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+}
+.hero-label {
+  background: linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+  border-color: rgba(244,240,138,0.55);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.hero h2 { text-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+
+/* Etiquetas de sección con brillo */
+.section-label {
+  background: linear-gradient(135deg, var(--verde-profundo), var(--verde-medio) 60%, var(--verde-claro));
+  box-shadow: 0 6px 16px rgba(45,90,39,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+  border: 1px solid rgba(244,240,138,0.35);
+}
+
+/* Cita y CTA: más profundidad y onda superior */
+.quote-section, .cta-section { position: relative; }
+.quote-section::before, .cta-section::before {
+  content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 56px;
+  background: var(--ola-blanca) center top / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.quote-section > *, .cta-section > * { position: relative; }
+.quote-section {
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 30%, rgba(240,138,126,0.20), transparent 60%),
+    linear-gradient(135deg, rgba(22,58,20,0.93), rgba(62,122,53,0.84)),
+    url("../img/guayaba_hero.png") center 35% / cover no-repeat;
+  padding-top: 7rem;
+}
+.quote-mark { color: var(--amarillo); opacity: 0.8; font-size: 5rem; line-height: 0.6; }
+.quote-text { text-shadow: 0 2px 16px rgba(0,0,0,0.35); }
+.quote-author { color: var(--amarillo); opacity: 0.95; }
+.cta-section {
+  background:
+    radial-gradient(ellipse 50% 70% at 85% 20%, rgba(240,138,126,0.28), transparent 60%),
+    linear-gradient(160deg, rgba(22,58,20,0.9), rgba(15,40,13,0.96)),
+    url("../img/guayaba_hero.png") 80% 90% / cover no-repeat;
+  padding-top: 7rem;
+}
+.cta-tag { background: linear-gradient(135deg, rgba(244,240,138,0.25), rgba(240,138,126,0.25)); border-color: rgba(244,240,138,0.55); }
+
+/* Botones y puntos verdes con relieve */
+.nav-links .btn-contacto {
+  background: linear-gradient(135deg, var(--verde-medio), var(--verde-bosque));
+  box-shadow: 0 6px 16px rgba(45,90,39,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.nav-links .btn-contacto:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(45,90,39,0.4); }
+.tl-dot { background: linear-gradient(135deg, var(--verde-claro), var(--verde-profundo)); box-shadow: 0 8px 18px rgba(45,90,39,0.35), 0 0 0 5px rgba(123,187,110,0.25); }
+.feat-icon { background: linear-gradient(135deg, var(--verde-lima), var(--verde-medio)); }
+
+/* Pie de página con degradado profundo */
+.site-footer {
+  background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(62,122,53,0.35), transparent 70%), linear-gradient(180deg, #123010, #0b1a09);
+  padding: 3rem 1.5rem 2.5rem;
+}
+.footer-logo { font-size: 1.5rem; color: var(--amarillo); }
+
+/* ── Verdes más sobrios: menos saturación y sin el lima brillante ── */
+:root {
+  --bosque-1: #1c3a19;
+  --bosque-2: #2b5226;
+  --bosque-3: #3d6a37;
+  --salvia:   #5f8a58;
+}
+.hero {
+  background:
+    radial-gradient(ellipse 55% 65% at 85% 25%, rgba(240,138,126,0.18), transparent 62%),
+    radial-gradient(ellipse 50% 60% at 8% 95%, rgba(244,240,138,0.08), transparent 60%),
+    linear-gradient(170deg, var(--bosque-1) 0%, var(--bosque-2) 55%, var(--bosque-3) 100%);
+}
+.hero::before { opacity: 0.55; }
+.topbar { background: linear-gradient(90deg, #14290f, var(--bosque-1) 50%, #14290f); }
+.ticker-wrap { background: linear-gradient(180deg, var(--bosque-2), var(--bosque-1)); }
+.ticker-wrap::before { background: linear-gradient(to right, var(--bosque-2), transparent); }
+.ticker-wrap::after  { background: linear-gradient(to left, var(--bosque-2), transparent); }
+.quote-section {
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 30%, rgba(240,138,126,0.12), transparent 60%),
+    linear-gradient(135deg, rgba(20,42,17,0.94), rgba(43,82,38,0.88)),
+    url("../img/guayaba_hero.png") center 35% / cover no-repeat;
+}
+.cta-section {
+  background:
+    radial-gradient(ellipse 50% 70% at 85% 20%, rgba(240,138,126,0.16), transparent 60%),
+    linear-gradient(160deg, rgba(20,42,17,0.93), rgba(12,30,10,0.97)),
+    url("../img/guayaba_hero.png") 80% 90% / cover no-repeat;
+}
+.regional-banner {
+  background:
+    linear-gradient(180deg, rgba(18,38,15,0.86) 0%, rgba(28,58,25,0.72) 50%, rgba(18,38,15,0.92) 100%),
+    url("../img/guayaba_hero.png") center 75% / cover no-repeat;
+}
+.section-label { background: linear-gradient(135deg, var(--bosque-1), var(--bosque-3)); border-color: rgba(244,240,138,0.25); }
+.tl-dot { background: linear-gradient(135deg, var(--salvia), var(--bosque-1)); }
+.feat-icon { background: linear-gradient(135deg, #8fb685, var(--bosque-3)); }
+.nutricion-section {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(240,138,126,0.12) 0, transparent 40%),
+    radial-gradient(circle at 92% 90%, rgba(95,138,88,0.14) 0, transparent 45%),
+    var(--crema-oscura);
+}

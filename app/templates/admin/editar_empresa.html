@@ -1,0 +1,78 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Editar empresa{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <a href="{{ url_for('admin.dashboard') }}">Dashboard</a> › Editar empresa
+    </div>
+    <h1>🏢 Logo, nombre y redes</h1>
+  </div>
+  <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline btn-sm">← Volver</a>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>⚙️ Configuración general</h2>
+  </div>
+  <div class="card-body">
+    <form method="POST" enctype="multipart/form-data" novalidate>
+      {{ form.hidden_tag() }}
+
+      {% if empresa.logo_filename %}
+      <div class="form-group">
+        <label>Logo actual</label>
+        <img src="{{ url_for('static', filename='uploads/' ~ empresa.logo_filename) }}"
+             alt="Logo actual" class="logo-preview">
+      </div>
+      {% else %}
+      <div class="form-group">
+        <label>Así se ve ahora en el sitio</label>
+        <img src="{{ url_for('static', filename='img/logo-placeholder.svg') }}"
+             alt="Logo provisional" class="logo-preview">
+        <p class="form-hint">Es el logo provisional. Sube el real abajo y se reemplaza.</p>
+      </div>
+      {% endif %}
+
+      <div class="form-group">
+        {{ form.nombre.label }}
+        {{ form.nombre(class='', placeholder='Ej: Guayaba Veleña') }}
+      </div>
+
+      <div class="form-group">
+        {{ form.logo.label }}
+        {{ form.logo() }}
+        <p class="form-hint">Formatos: PNG, JPG, JPEG, GIF, WEBP · Máx 5 MB</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.whatsapp.label }}
+        {{ form.whatsapp(placeholder='Ej: 573001234567') }}
+        <p class="form-hint">Solo números, con indicativo de país (57 para Colombia).</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.facebook.label }}
+        {{ form.facebook(placeholder='https://facebook.com/...') }}
+      </div>
+
+      <div class="form-group">
+        {{ form.instagram.label }}
+        {{ form.instagram(placeholder='https://instagram.com/...') }}
+      </div>
+
+      <div class="form-group">
+        {{ form.tiktok.label }}
+        {{ form.tiktok(placeholder='https://tiktok.com/@...') }}
+      </div>
+
+      <div style="display:flex; gap:.75rem; align-items:center; flex-wrap:wrap;">
+        {{ form.submit(class='btn btn-primary') }}
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

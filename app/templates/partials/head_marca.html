@@ -1,0 +1,14 @@
+{# Logo del panel como icono de pestaña, acceso directo, app instalada y vista previa al compartir el enlace. #}
+<link rel="icon" href="{{ marca_logo }}">
+<link rel="shortcut icon" href="{{ marca_logo }}">
+<link rel="apple-touch-icon" href="{{ marca_logo }}">
+<link rel="manifest" href="{{ url_for('public.manifest') }}">
+<meta name="theme-color" content="#2d5a27">
+<meta name="application-name" content="{{ marca_nombre }}">
+<meta name="apple-mobile-web-app-title" content="{{ marca_nombre }}">
+<meta property="og:site_name" content="{{ marca_nombre }}">
+<meta property="og:title" content="{{ marca_nombre }} — Guayaba de Vélez, Santander">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ request.url_root.rstrip('/') ~ marca_logo }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="{{ request.url_root.rstrip('/') ~ marca_logo }}">

@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guayaba Veleña auténtica de Vélez, Santander. Denominación de Origen Protegida. 1.000 a 2.000 msnm. 100% natural, sin químicos.">
+  <title>{{ empresa.nombre }} — Guayaba de Vélez, Santander</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  {% include 'partials/head_marca.html' %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/verdes.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/marca.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/secciones.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fondos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fotos.css') }}">
+</head>
+{# WhatsApp: siempre disponible. Sin número en el panel abre WhatsApp para elegir contacto. #}
+{% set wa_msg = 'Hola 🍈, vi su página de Guayaba Veleña (Vélez, Santander) y me interesa conocer precios, disponibilidad y cómo hacer un pedido. ¿Me pueden ayudar?' %}
+{% set wa_url = (empresa.whatsapp_link or 'https://wa.me/') ~ '?text=' ~ (wa_msg | urlencode) %}
+<body>
+  <a href="#nutricion" class="skip-link">Saltar al contenido</a>
+
+  <!-- ── TOPBAR ──────────────────────────────────────────── -->
+  <div class="topbar">
+    <div class="topbar-info">
+      <span><i class="tb-thumb ph ph-paisaje" aria-hidden="true"></i>Vélez, Santander</span>
+      <span><i class="tb-thumb ph ph-arbol" aria-hidden="true"></i>100% natural</span>
+    </div>
+    <div class="topbar-icons">
+      {% if empresa.whatsapp_link %}
+      <a href="{{ empresa.whatsapp_link }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+      {% endif %}
+      {% if empresa.instagram %}
+      <a href="{{ empresa.instagram }}" target="_blank" rel="noopener" title="Instagram">📸</a>
+      {% endif %}
+      {% if empresa.facebook %}
+      <a href="{{ empresa.facebook }}" target="_blank" rel="noopener" title="Facebook">👍</a>
+      {% endif %}
+      {% if empresa.tiktok %}
+        <a href="{{ empresa.tiktok }}" target="_blank" rel="noopener" title="TikTok">🎵</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="brand">
+      {% if empresa.logo_filename %}
+        <img src="{{ url_for('static', filename='uploads/' ~ empresa.logo_filename) }}"
+             alt="Logo {{ empresa.nombre }}">
+      {% else %}
+        <img src="{{ url_for('static', filename='img/logo-placeholder.svg') }}"
+             alt="Logo provisional de {{ empresa.nombre }}" class="logo-placeholder">
+      {% endif %}
+      <div class="brand-name">
+        <h1>{{ empresa.nombre }}</h1>
+        <span>Vélez · Santander · Colombia</span>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#nutricion">Nutrición</a>
+      <a href="#calidad">Calidad</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="{{ wa_url }}" class="btn-contacto" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.100c-.2-.1-1.500-.7-1.700-.8s-.4-.1-.6.100-.7.8-.8 1-.3.2-.6.1a6.700 6.700 0 0 1-3.300-2.900c-.3-.4.300-.4.800-1.400.1-.2 0-.3 0-.5s-.6-1.400-.8-1.900-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.200 5.200 0 0 0 1.100 2.800 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.2-.2-.5-.3z"/></svg>Contactar</a>
+    </nav>
+  </header>
+
+  <!-- ── TICKER DE FRASES ─────────────────────────────── -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <!-- Primera copia -->
+      <span class="ticker-item"><span class="ticker-dot"></span>Nuestra guayaba aporta hasta 4 veces más vitamina C que una naranja</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Alta en fibra, ideal para una digestión saludable</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Rica en vitamina A, potasio y antioxidantes como el licopeno</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>El fruto que da vida al bocadillo veleño · Denominación de Origen Protegida</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Cultivada a 1810 msnm · Vereda Guayabal · Vélez, Santander</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Bajo índice glucémico, gran sabor: una fruta que cuida tu bienestar</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Antioxidantes naturales que ayudan a cuidar tu piel y tu corazón</span>
+      <!-- Segunda copia (loop seamless) -->
+      <span class="ticker-item"><span class="ticker-dot"></span>Nuestra guayaba aporta hasta 4 veces más vitamina C que una naranja</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Alta en fibra, ideal para una digestión saludable</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Rica en vitamina A, potasio y antioxidantes como el licopeno</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>El fruto que da vida al bocadillo veleño · Denominación de Origen Protegida</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Cultivada a 1810 msnm · Vereda Guayabal · Vélez, Santander</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Bajo índice glucémico, gran sabor: una fruta que cuida tu bienestar</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Antioxidantes naturales que ayudan a cuidar tu piel y tu corazón</span>
+    </div>
+  </div>
+
+  <!-- ── HERO ────────────────────────────────────────────── -->
+  <section class="hero">
+    <span class="leaf-deco l1" aria-hidden="true">🍃</span>
+    <span class="leaf-deco l2" aria-hidden="true">🍃</span>
+    <span class="leaf-deco l3" aria-hidden="true">🌿</span>
+    <div class="hero-inner hero-split">
+      <div class="hero-copy">
+        <p class="hero-label">Denominación de Origen Protegida</p>
+        <h2>La Esencia Auténtica de la <span>Guayaba Veleña</span></h2>
+        <p class="hero-sub">
+          De la vereda Guayabal, a 1810 msnm, para tu mesa: guayaba veleña con tradición y calidad.
+        </p>
+        <div class="hero-actions">
+          <a href="#nutricion" class="btn-primary">🍃 Descubrir sus beneficios</a>
+          {% if empresa.whatsapp_link %}
+          <a href="{{ wa_url }}" class="btn-ghost" target="_blank" rel="noopener">💬 Hacer un pedido</a>
+          {% endif %}
+        </div>
+        <ul class="hero-chips">
+          <li>🏔️ 1810 msnm</li><li>🌱 100% natural</li><li>🏅 D.O.P.</li>
+        </ul>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-blob"></div>
+        <div class="photo-frame"><div class="photo-frame-img"></div></div>
+        <div class="photo-inset"><div class="photo-inset-img"></div></div>
+        <span class="float-tag t1">🍊 4× Vitamina C</span>
+        <span class="float-tag t2">🌾 Alta en fibra</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOTO HERO IMPACTO ─────────────────────────────── -->
+  <div class="photo-hero">
+    <img src="{{ url_for('static', filename='img/guayaba_hero.png') }}"
+         alt="Guayaba rosada veleña fresca con vista al valle de Vélez, Santander"
+         loading="lazy">
+    <div class="photo-hero-overlay">
+      <div class="photo-hero-content">
+        <span class="photo-hero-badge">🏅 Fincas Buena Vista &amp; El Placer</span>
+        <h2 class="photo-hero-title">Cultivada en las fincas Buena Vista y El Placer,<br>con el sabor que hizo famoso a Vélez, Santander.</h2>
+        <p class="photo-hero-sub">Guayaba veleña: tradición, nutrición y sabor en cada cosecha. El fruto que da vida al bocadillo con Denominación de Origen Protegida.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NUTRICIÓN & FRASES ───────────────────────────── -->
+  <section class="nutricion-section" id="nutricion">
+    <div class="section-wrap section-center">
+      <span class="section-label">🍊 Beneficios nutricionales</span>
+      <h2 class="section-title">Por qué la Guayaba Veleña es única</h2>
+      <p class="section-sub">100% natural, sin agroquímicos, con el más alto perfil nutricional de la región andina.</p>
+
+      <div class="nutricion-grid">
+
+        <!-- VITAMINA C -->
+        <div class="nutri-card"><div class="nutri-photo np1"></div>
+          <div class="nutri-card-header">
+            <div class="nutri-icon-wrap verde ph ph-entera" role="img" aria-label="Guayaba fresca"></div>
+            <div>
+              <div class="nutri-stat">4×</div>
+              <div class="nutri-label">Vitamina C</div>
+            </div>
+          </div>
+          <div class="nutri-card-body">
+            <p class="nutri-phrase">Nuestra guayaba aporta hasta 4 veces más vitamina C que una naranja.</p>
+            <p class="nutri-phrase">Una sola guayaba cubre tu dosis diaria de vitamina C — directo desde la vereda Guayabal.</p>
+            <p class="nutri-phrase">Defensas altas, sabor veleño: la vitamina C que tu cuerpo necesita.</p>
+          </div>
+        </div>
+
+        <!-- FIBRA -->
+        <div class="nutri-card"><div class="nutri-photo np2"></div>
+          <div class="nutri-card-header">
+            <div class="nutri-icon-wrap naranja ph ph-hoja" role="img" aria-label="Hojas de guayabo"></div>
+            <div>
+              <div class="nutri-stat">Alta</div>
+              <div class="nutri-label">Fibra &amp; Digestión</div>
+            </div>
+          </div>
+          <div class="nutri-card-body">
+            <p class="nutri-phrase">Alta en fibra, ideal para una digestión saludable.</p>
+            <p class="nutri-phrase">Cada bocado cuida tu salud intestinal, de forma natural.</p>
+          </div>
+        </div>
+
+        <!-- ANTIOXIDANTES -->
+        <div class="nutri-card"><div class="nutri-photo np3"></div>
+          <div class="nutri-card-header">
+            <div class="nutri-icon-wrap morado ph ph-mitad" role="img" aria-label="Guayaba rosada partida"></div>
+            <div>
+              <div class="nutri-stat">Rico</div>
+              <div class="nutri-label">Antioxidantes</div>
+            </div>
+          </div>
+          <div class="nutri-card-body">
+            <p class="nutri-phrase">Rica en vitamina A, potasio y antioxidantes como el licopeno.</p>
+            <p class="nutri-phrase">Antioxidantes naturales que ayudan a cuidar tu piel y tu corazón.</p>
+            <p class="nutri-phrase">Bajo índice glucémico, gran sabor: una fruta que cuida tu bienestar.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FRASES REGIONALES ──────────────────────────────── -->
+  <section class="regional-banner">
+    <div class="regional-inner">
+      <span class="regional-eyebrow">🌿 Identidad y Origen</span>
+      <h2 class="regional-title">Tradición que nace en la montaña, <em>sabor que viaja por Colombia</em></h2>
+      <div class="regional-phrases">
+        <div class="regional-phrase-item">
+          <span class="rp-icon ph ph-paisaje" role="img" aria-label="Montañas de Vélez"></span>
+          <p>De la vereda Guayabal, a 1810 msnm, para tu mesa: guayaba veleña con tradición y calidad.</p>
+        </div>
+        <div class="regional-phrase-item">
+          <span class="rp-icon ph ph-ladera" role="img" aria-label="Cultivos en ladera"></span>
+          <p>Cultivada en las fincas Buena Vista y El Placer, con el sabor que hizo famoso a Vélez, Santander.</p>
+        </div>
+        <div class="regional-phrase-item">
+          <span class="rp-icon ph ph-entera" role="img" aria-label="Guayaba fresca"></span>
+          <p>Guayaba veleña: tradición, nutrición y sabor en cada cosecha.</p>
+        </div>
+        <div class="regional-phrase-item">
+          <span class="rp-icon ph ph-mitad" role="img" aria-label="Guayaba partida"></span>
+          <p>El fruto que da vida al bocadillo veleño, con Denominación de Origen Protegida.</p>
+        </div>
+      </div>
+      <div class="regional-stats">
+        <div class="rstat">
+          <div class="rstat-value">1810</div>
+          <div class="rstat-label">msnm · Altitud</div>
+        </div>
+        <div class="rstat">
+          <div class="rstat-value">427+</div>
+          <div class="rstat-label">Familias productoras</div>
+        </div>
+        <div class="rstat">
+          <div class="rstat-value">40</div>
+          <div class="rstat-label">Años de vida útil</div>
+        </div>
+        <div class="rstat">
+          <div class="rstat-value">D.O.P.</div>
+          <div class="rstat-label">Origen certificado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── GALERÍA ────────────────────────────────────────── -->
+  <section class="gallery-section">
+    <div class="section-wrap">
+      <span class="section-label">📷 Del campo a la mesa</span>
+      <h2 class="section-title">Mira de cerca nuestra guayaba</h2>
+      <div class="gallery">
+        <figure class="g-tile g-big"><div class="g-img g1" role="img" aria-label="Cultivos de guayaba en las laderas de Vélez"></div><figcaption>Laderas de Vélez · 1810 msnm</figcaption></figure>
+        <figure class="g-tile"><div class="g-img g2" role="img" aria-label="Guayaba rosada partida por la mitad"></div><figcaption>Pulpa rosada, dulce y aromática</figcaption></figure>
+        <figure class="g-tile"><div class="g-img g3" role="img" aria-label="Guayaba fresca recién cosechada"></div><figcaption>Cosechada en su punto</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUALITY INDICATORS ──────────────────────────────── -->
+  <section class="quality-section" id="calidad">
+    <div class="section-wrap">
+      <span class="section-label">🔬 Análisis certificado</span>
+      <h2 class="section-title">Indicadores de Pureza y Calidad</h2>
+      <p class="section-sub">Mejor concentración de azúcares, vitaminas y pectina de la región.</p>
+
+      <div class="quality-grid">
+        <div class="quality-card fade-up">
+          <span class="qc-badge">Grados Brix</span>
+          <div class="qc-value">11.5–13.5</div>
+          <div class="qc-label">Azúcares Naturales</div>
+          <p class="qc-desc">Concentración óptima de azúcares para bocadillo y pulpa procesada.</p>
+        </div>
+        <div class="quality-card fade-up">
+          <span class="qc-badge">Vitamina C</span>
+          <div class="qc-value">45%</div>
+          <div class="qc-label">IDR por porción</div>
+          <p class="qc-desc">Mayor concentración que la mayoría de frutas tropicales del país.</p>
+        </div>
+        <div class="quality-card fade-up">
+          <span class="qc-badge">Pectina</span>
+          <div class="qc-value">Alta</div>
+          <div class="qc-label">Capacidad gelificante</div>
+          <p class="qc-desc">Consistencia extra que favorece la elaboración artesanal de bocadillo.</p>
+        </div>
+        <div class="quality-card fade-up">
+          <span class="qc-badge">Químicos</span>
+          <div class="qc-value">0%</div>
+          <div class="qc-label">Sin agroquímicos</div>
+          <p class="qc-desc">Manejo agroecológico certificado en todas las fincas proveedoras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── TIMELINE PROCESO ─────────────────────────────────── -->
+  <section class="timeline-section" id="proceso">
+    <div class="section-wrap">
+      <span class="section-label">🌱 Trazabilidad</span>
+      <h2 class="section-title">Ciclo de Cosecha &amp; Transformación</h2>
+      <p class="section-sub">Desde la finca hasta el bocadillo, con control en cada etapa.</p>
+
+      <div class="timeline">
+        <div class="timeline-step">
+          <div class="tl-dot ph ph-arbol" role="img" aria-label="Guayabo con fruta"></div>
+          <div class="tl-body">
+            <p class="tl-step-num">PASO 01</p>
+            <h3 class="tl-title">
+              Punto Pintón-Maduro
+              <span class="tl-tag optimo">Óptimo</span>
+            </h3>
+            <p class="tl-desc">Selección manual en fincas de Vélez entre Septiembre, Octubre y Noviembre. Fruta recolectada en su mejor punto de azúcar y firmeza.</p>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="tl-dot ph ph-mitad" role="img" aria-label="Pulpa de guayaba"></div>
+          <div class="tl-body">
+            <p class="tl-step-num">PASO 02</p>
+            <h3 class="tl-title">
+              Lavado y Despulpado en Frío
+              <span class="tl-tag proceso">En Planta</span>
+            </h3>
+            <p class="tl-desc">Proceso en instalaciones certificadas con control de temperatura para conservar las propiedades nutritivas y el aroma característico de la guayaba veleña.</p>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="tl-dot ph ph-paisaje" role="img" aria-label="Origen Vélez"></div>
+          <div class="tl-body">
+            <p class="tl-step-num">PASO 03</p>
+            <h3 class="tl-title">
+              Denominación Protegida
+              <span class="tl-tag protegido">D.O.P.</span>
+            </h3>
+            <p class="tl-desc">Marca certificada ante la SIC que garantiza el origen geográfico, las técnicas artesanales y la calidad diferencial del bocadillo veleño.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUOTE ────────────────────────────────────────────── -->
+  <section class="quote-section">
+    <div class="quote-inner">
+      <div class="quote-mark">&ldquo;</div>
+      <p class="quote-text">
+        Cultivamos cada guayaba bajo la niebla andina para llevar la
+        tradición más dulce de nuestra tierra a su mesa.
+      </p>
+      <p class="quote-author">— Asociación de Productores de Guayaba Veleña · 427 Familias</p>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ─────────────────────────────────────────── -->
+  <section class="features-section" id="nosotros">
+    <div class="section-wrap">
+      <span class="section-label">✅ Por qué elegirnos</span>
+      <h2 class="section-title">Perfil Organoleptico &amp; Diferencial</h2>
+      <p class="section-sub">Lo que hace única a nuestra guayaba en el mercado nacional.</p>
+
+      <ul class="features-list">
+
+        {% set bloques_extra = [
+          ('historia', 'casa', 'Nuestra Historia', None),
+          ('fincas', 'ladera', 'Fincas Certificadas', None),
+          ('manejo_fitosanitario', 'hoja', 'Manejo Agroecológico', 'Panela de Baya'),
+          ('proceso_productivo', 'arbol', 'Proceso Productivo', None),
+          ('cosecha_transformacion', 'entera', 'Cosecha & Transformación', 'D.O.P.')
+        ] %}
+
+        {% for clave, icono, fallback_titulo, badge in bloques_extra %}
+          {% set bloque = secciones.get(clave) %}
+          {% if bloque %}
+          <li>
+            <span class="feat-icon ph ph-{{ icono }}" role="img" aria-hidden="true"></span>
+            <div class="feat-body">
+              <p class="feat-title">{{ bloque.titulo }}</p>
+              <p class="feat-desc">{{ bloque.texto | truncate(120) }}</p>
+            </div>
+            {% if badge %}<span class="feat-badge {{ 'dop' if 'D.O.P' in badge else '' }}">{{ badge }}</span>{% endif %}
+          </li>
+          {% endif %}
+        {% endfor %}
+
+        <li>
+          <span class="feat-icon ph ph-madera" role="img" aria-hidden="true"></span>
+          <div class="feat-body">
+            <p class="feat-title">Trazabilidad de Investigación</p>
+            <p class="feat-desc">Semilleros de investigación que estudian el cultivo tradicional y la composición química del suelo veleño.</p>
+          </div>
+        </li>
+        <li>
+          <span class="feat-icon ph ph-paisaje" role="img" aria-hidden="true"></span>
+          <div class="feat-body">
+            <p class="feat-title">Asociación y Comunidad Certificada</p>
+            <p class="feat-desc">+427 familias productoras que cultivan con prácticas agroecológicas y comercio justo en todo el municipio.</p>
+          </div>
+        </li>
+        <li>
+          <span class="feat-icon ph ph-mitad" role="img" aria-hidden="true"></span>
+          <div class="feat-body">
+            <p class="feat-title">Semillero Tradicional de Bajo Impacto</p>
+            <p class="feat-desc">Preservación activa de la variedad criolla de Guayaba Manzana, base del bocadillo veleño con DOP.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── INFO BLOQUES ──────────────────────────────────────── -->
+  {% set has_info = secciones.get('historia') or secciones.get('fincas') %}
+  {% if has_info %}
+  <section class="info-section">
+    <div class="section-wrap">
+      <div class="info-grid">
+        {% if secciones.get('historia') %}
+        <div class="info-block">
+          <h4>{{ secciones['historia'].titulo }}</h4>
+          <p>{{ secciones['historia'].texto }}</p>
+        </div>
+        {% endif %}
+        {% if secciones.get('fincas') %}
+        <div class="info-block">
+          <h4>{{ secciones['fincas'].titulo }}</h4>
+          <p>{{ secciones['fincas'].texto }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- ── CTA ──────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="cta-tag">🛒 Compra 2025 Disponible</span>
+      <h2 class="cta-title">Asegura tu Lote de Guayaba Veleña</h2>
+      <p class="cta-sub">
+        La transformación artesanal acontece en Noviembre. Reserva con anticipación
+        repartiéndose directamente con Productores Agrícolas (PAP).
+      </p>
+      {% if empresa.whatsapp_link %}
+        <a href="{{ wa_url }}" class="btn-cta" target="_blank" rel="noopener">
+          💬 Solicitar Lote / Contactar Productores
+        </a>
+      {% else %}
+        <span class="btn-cta" style="opacity:0.7; cursor:default;">💬 Contactar Productores</span>
+      {% endif %}
+      <p class="cta-note">Producción de Origen Agrícola Natural (PDN)</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <img src="{{ marca_logo }}" alt="Logo {{ empresa.nombre }}" class="footer-logo-img">
+    <p class="footer-logo">{{ empresa.nombre }}</p>
+    <div class="footer-links">
+      {% if empresa.whatsapp_link %}<a href="{{ empresa.whatsapp_link }}" target="_blank">WhatsApp</a>{% endif %}
+      {% if empresa.facebook %}<a href="{{ empresa.facebook }}" target="_blank">Facebook</a>{% endif %}
+      {% if empresa.instagram %}<a href="{{ empresa.instagram }}" target="_blank">Instagram</a>{% endif %}
+      {% if empresa.tiktok %}<a href="{{ empresa.tiktok }}" target="_blank">TikTok</a>{% endif %}
+    </div>
+    <p>&copy; {{ empresa.nombre }} — Denominación de Origen · Vélez, Santander, Colombia.</p>
+  </footer>
+
+  <!-- ── BOTTOM NAV (Mobile) ──────────────────────────────── -->
+  <nav class="bottom-nav" aria-label="Navegación principal">
+    <a href="#" class="active">
+      <span class="nav-icon">🏠</span>
+      Inicio
+    </a>
+    <a href="#calidad">
+      <span class="nav-icon">📊</span>
+      Calidad
+    </a>
+    <a href="#proceso">
+      <span class="nav-icon">🌱</span>
+      Proceso
+    </a>
+    {% if empresa.whatsapp_link %}
+    <a href="{{ empresa.whatsapp_link }}" target="_blank">
+      <span class="nav-icon">💬</span>
+      Pedir
+    </a>
+    {% endif %}
+  </nav>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+
+  <!-- ── WHATSAPP FLOTANTE ────────────────────────────── -->
+  <a class="wa-float"
+     href="{{ wa_url }}"
+     target="_blank" rel="noopener"
+     aria-label="Escribirnos por WhatsApp">
+    <span class="wa-float-icon" aria-hidden="true">💬</span>
+    <span class="wa-float-label">Escríbenos</span>
+  </a>
+
+</body>
+</html>

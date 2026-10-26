@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88" role="img" aria-label="Guayaba Veleña">
+  <defs>
+    <linearGradient id="gv-fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d5a27"/>
+      <stop offset="1" stop-color="#5a9e4f"/>
+    </linearGradient>
+    <linearGradient id="gv-fruto" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#f3f7e8"/>
+      <stop offset="0.5" stop-color="#d8e8b4"/>
+      <stop offset="0.78" stop-color="#e8c4b8"/>
+      <stop offset="1" stop-color="#d4997a"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="44" cy="44" r="44" fill="url(#gv-fondo)"/>
+
+  <!-- hoja -->
+  <path d="M44 24c1-8 7-13 16-13-1 9-7 14-16 13z" fill="#d4f5cc"/>
+  <path d="M45 24c3-5 8-8 12-9" fill="none" stroke="#2d5a27" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- fruto de guayaba -->
+  <path d="M44 27c10 0 16 8 16 18 0 12-8 22-16 22s-16-10-16-22c0-10 6-18 16-18z" fill="url(#gv-fruto)"/>
+
+  <!-- pepitas -->
+  <g fill="#8a6a2f">
+    <circle cx="38.5" cy="48" r="2.1"/>
+    <circle cx="49.5" cy="48" r="2.1"/>
+    <circle cx="44" cy="58" r="2.1"/>
+    <circle cx="35" cy="57.5" r="1.7"/>
+    <circle cx="53" cy="57.5" r="1.7"/>
+  </g>
+</svg>

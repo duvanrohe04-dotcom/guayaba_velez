@@ -1,0 +1,59 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Datos de acceso{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <a href="{{ url_for('admin.dashboard') }}">Dashboard</a> › Datos de acceso
+    </div>
+    <h1>🔑 Usuario y contraseña</h1>
+  </div>
+  <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline btn-sm">← Volver</a>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>🔐 Cambiar credenciales</h2>
+  </div>
+  <div class="card-body">
+    <form method="POST" novalidate>
+      {{ form.hidden_tag() }}
+
+      {% for campo in [form.password_actual, form.username, form.password, form.confirmar_password] %}
+        {% for error in campo.errors %}
+          <div class="flash danger">{{ error }}</div>
+        {% endfor %}
+      {% endfor %}
+
+      <div class="form-group">
+        {{ form.password_actual.label }}
+        {{ form.password_actual() }}
+        <p class="form-hint">Confirmación de que eres tú. No se cambia.</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.username.label }}
+        {{ form.username(placeholder='admin') }}
+      </div>
+
+      <div class="form-group">
+        {{ form.password.label }}
+        {{ form.password() }}
+        <p class="form-hint">Mínimo 8 caracteres. Déjala vacía para mantener la actual.</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.confirmar_password.label }}
+        {{ form.confirmar_password() }}
+      </div>
+
+      <div style="display:flex; gap:.75rem; align-items:center; flex-wrap:wrap;">
+        {{ form.submit(class='btn btn-primary') }}
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

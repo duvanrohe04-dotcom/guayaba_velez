@@ -1,0 +1,100 @@
+﻿{% extends "admin/base_admin.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+{% set redes = [empresa.facebook, empresa.instagram, empresa.tiktok] | select | list | length %}
+
+<!-- Bienvenida con foto -->
+<section class="welcome">
+  <div class="welcome-text">
+    <span class="welcome-chip">👋 Bienvenido, {{ current_user.username }}</span>
+    <h1>Panel de control de <em>{{ empresa.nombre }}</em></h1>
+    <p>Edita el logo, los textos y los contactos. Los cambios se ven al instante en el sitio.</p>
+    <div class="welcome-actions">
+      <a href="{{ url_for('public.index') }}" target="_blank" rel="noopener" class="btn btn-light">🌐 Ver el sitio</a>
+      <a href="{{ url_for('admin.editar_empresa') }}" class="btn btn-ghost-light">🏢 Editar empresa</a>
+    </div>
+  </div>
+  <img src="{{ marca_logo }}" alt="Logo {{ empresa.nombre }}" class="welcome-logo">
+</section>
+
+<!-- Indicadores -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-ico verde ph ph-madera"></span>
+    <div><div class="stat-num">{{ secciones | length }}</div><div class="stat-lbl">Secciones editables</div></div>
+  </div>
+  <div class="stat">
+    <span class="stat-ico {{ 'verde' if empresa.whatsapp else 'rosa' }} ph ph-entera"></span>
+    <div><div class="stat-num">{{ 'Activo' if empresa.whatsapp else 'Falta' }}</div><div class="stat-lbl">WhatsApp</div></div>
+  </div>
+  <div class="stat">
+    <span class="stat-ico {{ 'verde' if redes else 'amarillo' }} ph ph-paisaje"></span>
+    <div><div class="stat-num">{{ redes }}/3</div><div class="stat-lbl">Redes conectadas</div></div>
+  </div>
+  <div class="stat">
+    <span class="stat-ico {{ 'verde' if empresa.logo_filename else 'amarillo' }} ph ph-hoja"></span>
+    <div><div class="stat-num">{{ 'Propio' if empresa.logo_filename else 'Provisional' }}</div><div class="stat-lbl">Logo</div></div>
+  </div>
+</div>
+
+{% if not empresa.whatsapp or not empresa.logo_filename %}
+<div class="tip">
+  💡 <strong>Para terminar de configurar:</strong>
+  {% if not empresa.logo_filename %}sube tu logo{% endif %}{% if not empresa.logo_filename and not empresa.whatsapp %} y {% endif %}{% if not empresa.whatsapp %}agrega el número de WhatsApp{% endif %}
+  en <a href="{{ url_for('admin.editar_empresa') }}">Editar empresa</a>.
+</div>
+{% endif %}
+
+<!-- Accesos rápidos -->
+<h2 class="block-title">Accesos rápidos</h2>
+<div class="quick">
+  <a class="quick-card" href="{{ url_for('admin.editar_empresa') }}">
+    <span class="q-ico ph ph-casa"></span><strong>Logo y redes</strong><small>Nombre, logo, WhatsApp, Facebook, Instagram, TikTok</small>
+  </a>
+  <a class="quick-card" href="{{ url_for('admin.cuenta') }}">
+    <span class="q-ico ph ph-arbol"></span><strong>Usuario y contraseña</strong><small>Cambia tus datos de acceso al panel</small>
+  </a>
+  <a class="quick-card" href="{{ url_for('public.index') }}" target="_blank" rel="noopener">
+    <span class="q-ico ph ph-ladera"></span><strong>Ver sitio público</strong><small>Abre la página como la ven tus clientes</small>
+  </a>
+</div>
+
+<!-- Datos de la empresa -->
+<h2 class="block-title">Datos de la empresa</h2>
+<div class="card">
+  <div class="card-body">
+    <div class="info-grid">
+      <div class="info-item"><div class="info-item-label">Nombre</div><div class="info-item-value">{{ empresa.nombre }}</div></div>
+      <div class="info-item"><div class="info-item-label">WhatsApp</div>
+        <div class="info-item-value {{ '' if empresa.whatsapp else 'empty' }}">{{ empresa.whatsapp or 'Sin configurar' }}</div></div>
+      <div class="info-item"><div class="info-item-label">Facebook</div>
+        <div class="info-item-value {{ '' if empresa.facebook else 'empty' }}">{{ empresa.facebook or 'Sin configurar' }}</div></div>
+      <div class="info-item"><div class="info-item-label">Instagram</div>
+        <div class="info-item-value {{ '' if empresa.instagram else 'empty' }}">{{ empresa.instagram or 'Sin configurar' }}</div></div>
+      <div class="info-item"><div class="info-item-label">TikTok</div>
+        <div class="info-item-value {{ '' if empresa.tiktok else 'empty' }}">{{ empresa.tiktok or 'Sin configurar' }}</div></div>
+      <div class="info-item"><div class="info-item-label">Usuario del panel</div>
+        <div class="info-item-value">{{ current_user.username }}</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Secciones del sitio -->
+<h2 class="block-title">Textos del sitio público</h2>
+<div class="sections-grid">
+  {% for s in secciones %}
+  <a class="sec-card" href="{{ url_for('admin.editar_contenido', seccion=s.seccion) }}">
+    <span class="sec-num">{{ loop.index }}</span>
+    <div class="sec-body">
+      <div class="sec-title">{{ s.titulo or s.seccion }}</div>
+      <div class="sec-preview">{{ s.texto | truncate(90) if s.texto else 'Sin contenido' }}</div>
+    </div>
+    <span class="sec-edit">✏️ Editar</span>
+  </a>
+  {% else %}
+  <p class="empty-note">No hay secciones creadas. Ejecuta <code>python seed.py</code>.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

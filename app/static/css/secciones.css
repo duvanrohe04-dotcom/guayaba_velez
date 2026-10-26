@@ -1,0 +1,224 @@
+/* Calidad, proceso, perfil, información y cabecera: acabado final.
+   Se carga al final y sobrescribe a style.css / verdes.css. */
+
+/* ── Cabeceras de sección centradas ─────────────────────────── */
+.quality-section .section-wrap,
+.timeline-section .section-wrap,
+.features-section .section-wrap { text-align: center; }
+.quality-section .section-sub,
+.timeline-section .section-sub,
+.features-section .section-sub { margin-left: auto; margin-right: auto; max-width: 620px; }
+.quality-section .section-title::after,
+.timeline-section .section-title::after,
+.features-section .section-title::after { left: 50%; transform: translateX(-50%); }
+
+/* ── CALIDAD ────────────────────────────────────────────────── */
+.quality-section {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(240,138,126,0.14), transparent 38%),
+    radial-gradient(circle at 95% 85%, rgba(95,138,88,0.16), transparent 42%),
+    var(--crema-oscura);
+}
+.quality-grid { gap: 1.4rem; margin-top: 0.5rem; text-align: center; }
+.quality-card {
+  border: none; border-radius: 26px; padding: 2.6rem 1.3rem 1.6rem;
+  box-shadow: 0 14px 38px rgba(45,90,39,0.13);
+  overflow: visible;
+}
+.quality-card::before {
+  position: absolute; top: -26px; left: 50%; transform: translateX(-50%);
+  width: 56px; height: 56px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+  background: linear-gradient(135deg, var(--bosque-3), var(--bosque-1));
+  border: 4px solid var(--crema-oscura);
+  box-shadow: 0 10px 22px rgba(28,58,25,0.35);
+}
+.quality-card:nth-child(1)::before { content: '🍯'; }
+.quality-card:nth-child(2)::before { content: '🍊'; }
+.quality-card:nth-child(3)::before { content: '🧬'; }
+.quality-card:nth-child(4)::before { content: '🌱'; }
+.quality-card:hover { transform: translateY(-8px); box-shadow: 0 22px 48px rgba(45,90,39,0.22); }
+.quality-card::after { left: 18%; right: 18%; bottom: 0; height: 4px; border-radius: 4px 4px 0 0; }
+.qc-badge { background: #fff0ed; color: var(--guayaba-o); }
+.qc-value {
+  font-size: clamp(1.9rem, 3vw, 2.5rem); margin: 0.2rem 0;
+  background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--bosque-2);
+}
+.qc-label { color: var(--guayaba-o); font-weight: 700; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.07em; }
+.qc-desc { font-size: 0.82rem; color: var(--texto-medio); }
+
+/* ── PROCESO / TIMELINE ─────────────────────────────────────── */
+.timeline-section {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(95,138,88,0.10), transparent 55%),
+    linear-gradient(180deg, #fff 0%, #fbf7ef 100%);
+}
+.timeline { counter-reset: paso; gap: 1.6rem; text-align: left; position: relative; }
+.timeline-step {
+  counter-increment: paso;
+  position: relative; overflow: hidden;
+  background: #fff; border: none; border-radius: 26px;
+  padding: 2rem 1.6rem 1.6rem;
+  box-shadow: 0 14px 38px rgba(45,90,39,0.12);
+  border-top: 5px solid var(--guayaba);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.timeline-step:nth-child(2) { border-top-color: var(--amarillo); }
+.timeline-step:nth-child(3) { border-top-color: var(--bosque-3); }
+.timeline-step:hover { transform: translateY(-8px); box-shadow: 0 22px 48px rgba(45,90,39,0.2); }
+.timeline-step::after {
+  content: '0' counter(paso);
+  position: absolute; right: 1rem; top: 0.2rem;
+  font-family: 'Playfair Display', serif; font-weight: 700; font-size: 5.5rem; line-height: 1;
+  color: rgba(45,90,39,0.07); pointer-events: none;
+}
+.tl-dot {
+  width: 64px; height: 64px; font-size: 1.7rem; margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--bosque-3), var(--bosque-1));
+  box-shadow: 0 12px 24px rgba(28,58,25,0.35), 0 0 0 7px rgba(95,138,88,0.18);
+}
+.tl-step-num { color: var(--guayaba-o); opacity: 1; font-size: 0.7rem; }
+.tl-title { font-size: 1.25rem; }
+.tl-desc { color: var(--texto-medio); font-size: 0.9rem; line-height: 1.6; }
+@media (min-width: 900px) {
+  .timeline::before {
+    display: block; left: 12%; right: 12%; top: 62px; bottom: auto; height: 0;
+    border-top: 3px dashed rgba(95,138,88,0.45); background: none; width: auto; z-index: 0;
+  }
+  .timeline-step { z-index: 1; padding: 2.2rem 1.8rem 1.8rem; }
+}
+
+/* ── PERFIL / FEATURES ──────────────────────────────────────── */
+.features-section {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(244,240,138,0.20), transparent 36%),
+    var(--crema);
+}
+.features-list { text-align: left; gap: 1.1rem; }
+.features-list li {
+  border: none; border-radius: 22px; padding: 1.3rem 1.4rem; gap: 1.1rem;
+  border-left: 5px solid var(--guayaba);
+  box-shadow: 0 10px 28px rgba(45,90,39,0.10);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.features-list li:nth-child(3n+2) { border-left-color: var(--amarillo); }
+.features-list li:nth-child(3n) { border-left-color: var(--bosque-3); }
+.features-list li:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(45,90,39,0.18); }
+.feat-icon {
+  width: 52px; height: 52px; border-radius: 16px; font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--bosque-3), var(--bosque-1));
+  box-shadow: 0 8px 18px rgba(28,58,25,0.3);
+}
+.feat-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.25rem; }
+.feat-desc { font-size: 0.86rem; color: var(--texto-medio); line-height: 1.55; }
+.feat-badge { background: linear-gradient(135deg, #fff0ed, #ffe3dc); color: var(--guayaba-o); }
+
+/* ── INFORMACIÓN (historia / fincas) con foto ───────────────── */
+.info-section { background: linear-gradient(180deg, #fff 0%, #fbf7ef 100%); }
+.info-block {
+  position: relative; padding: 0; overflow: hidden; border: none; border-radius: 26px;
+  background: #fff; box-shadow: 0 14px 38px rgba(45,90,39,0.13);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.info-block:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(45,90,39,0.2); }
+.info-block::before {
+  content: ''; display: block; height: 170px;
+  background: url("../img/guayaba_hero.png") no-repeat; background-size: 240%;
+  background-position: 20% 5%;
+}
+.info-block:nth-child(2)::before { background-position: 85% 95%; }
+.info-block::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 170px;
+  background: linear-gradient(to bottom, rgba(20,42,17,0) 40%, rgba(20,42,17,0.55));
+  pointer-events: none;
+}
+.info-block h4, .info-block p { padding-left: 1.6rem; padding-right: 1.6rem; }
+.info-block h4 { font-size: 1.4rem; margin: 1.3rem 0 0.5rem; }
+.info-block h4::after { content: ''; display: block; width: 42px; height: 4px; border-radius: 4px; margin-top: 0.5rem; background: linear-gradient(90deg, var(--guayaba), var(--amarillo)); }
+.info-block p { color: var(--texto-medio); font-size: 0.95rem; line-height: 1.7; padding-bottom: 1.7rem; }
+
+/* ── CABECERA ───────────────────────────────────────────────── */
+.site-header {
+  background: rgba(255,255,255,0.88);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid rgba(45,90,39,0.10);
+  box-shadow: 0 6px 24px rgba(28,58,25,0.08);
+  padding: 0.75rem clamp(1rem, 4vw, 3rem);
+}
+.brand img { height: 52px; width: 52px; border: 3px solid var(--guayaba); box-shadow: 0 6px 16px rgba(217,98,90,0.3); background: #fff; }
+.brand-name h1 { font-size: 1.25rem; color: var(--bosque-1); }
+.brand-name span { color: var(--guayaba-o); font-weight: 600; }
+.nav-links { gap: 0.3rem; }
+.nav-links a:not(.btn-contacto) { position: relative; font-size: 0.9rem; padding: 0.45rem 0.9rem; background: none; }
+.nav-links a:not(.btn-contacto)::after {
+  content: ''; position: absolute; left: 0.9rem; right: 0.9rem; bottom: 0.2rem; height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--guayaba), var(--amarillo));
+  transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+}
+.nav-links a:not(.btn-contacto):hover { background: none; color: var(--bosque-1); }
+.nav-links a:not(.btn-contacto):hover::after { transform: scaleX(1); }
+.nav-links .btn-contacto { padding: 0.6rem 1.4rem; margin-left: 0.4rem; background: linear-gradient(135deg, var(--guayaba), var(--guayaba-o)); box-shadow: 0 8px 18px rgba(217,98,90,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
+.nav-links .btn-contacto:hover { background: linear-gradient(135deg, #f49b90, var(--guayaba-o)); box-shadow: 0 12px 24px rgba(217,98,90,0.45); }
+.topbar { font-size: 0.7rem; padding: 0.4rem clamp(1rem, 4vw, 3rem); }
+.topbar-badge { background: rgba(244,240,138,0.14); border-color: rgba(244,240,138,0.4); color: var(--amarillo); }
+
+@media (max-width: 639px) {
+  .info-block::before, .info-block::after { height: 140px; }
+  .timeline-step::after { font-size: 4rem; }
+}
+/* ── NUEVA PALETA VERDE: esmeralda profundo, limpio y con luz ─────
+   Sin rombos ni verde apagado/sucio: más rico y fresco, sin ser chillón. */
+:root {
+  --esm-1: #0d3b2a;   /* fondo más oscuro */
+  --esm-2: #14573b;   /* esmeralda */
+  --esm-3: #1f7a4d;   /* jade */
+  --esm-4: #3a9b64;   /* brillo suave */
+}
+.hero {
+  background:
+    radial-gradient(circle 280px at 88% 18%, rgba(240,138,126,0.30), transparent 70%),
+    radial-gradient(circle 360px at 6% 100%, rgba(244,240,138,0.16), transparent 70%),
+    radial-gradient(circle 220px at 62% 8%, rgba(255,255,255,0.10), transparent 70%),
+    linear-gradient(155deg, var(--esm-1) 0%, var(--esm-2) 48%, var(--esm-3) 100%);
+}
+/* Fuera la trama de rombos; en su lugar, círculos de luz (bokeh) muy suaves */
+.hero::before {
+  opacity: 1;
+  background:
+    radial-gradient(circle 70px at 18% 30%, rgba(255,255,255,0.07), transparent 70%),
+    radial-gradient(circle 110px at 42% 78%, rgba(255,255,255,0.06), transparent 70%),
+    radial-gradient(circle 50px at 70% 55%, rgba(244,240,138,0.08), transparent 70%),
+    radial-gradient(circle 90px at 92% 85%, rgba(255,255,255,0.07), transparent 70%);
+  -webkit-mask-image: none; mask-image: none;
+}
+.topbar { background: linear-gradient(90deg, var(--esm-1), var(--esm-2) 50%, var(--esm-1)); }
+.ticker-wrap { background: linear-gradient(180deg, var(--esm-3), var(--esm-2)); }
+.ticker-wrap::before { background: linear-gradient(to right, var(--esm-3), transparent); }
+.ticker-wrap::after  { background: linear-gradient(to left, var(--esm-3), transparent); }
+.quote-section {
+  background:
+    radial-gradient(circle 320px at 12% 25%, rgba(240,138,126,0.18), transparent 70%),
+    linear-gradient(135deg, rgba(13,59,42,0.93), rgba(31,122,77,0.82)),
+    url("../img/guayaba_hero.png") center 35% / cover no-repeat;
+}
+.cta-section {
+  background:
+    radial-gradient(circle 320px at 88% 15%, rgba(240,138,126,0.22), transparent 70%),
+    linear-gradient(160deg, rgba(13,59,42,0.92), rgba(8,36,25,0.97)),
+    url("../img/guayaba_hero.png") 80% 90% / cover no-repeat;
+}
+.regional-banner {
+  background:
+    linear-gradient(180deg, rgba(8,36,25,0.86) 0%, rgba(20,87,59,0.70) 50%, rgba(8,36,25,0.92) 100%),
+    url("../img/guayaba_hero.png") center 75% / cover no-repeat;
+}
+.section-label { background: linear-gradient(135deg, var(--esm-1), var(--esm-3)); }
+.tl-dot, .feat-icon, .quality-card::before { background: linear-gradient(135deg, var(--esm-4), var(--esm-1)); }
+.site-footer { background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(31,122,77,0.35), transparent 70%), linear-gradient(180deg, #0b2d20, #061a12); }
+.admin-nav { background: linear-gradient(160deg, var(--esm-1), var(--esm-2)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .quality-card:hover, .timeline-step:hover, .features-list li:hover, .info-block:hover { transform: none; }
+}
+

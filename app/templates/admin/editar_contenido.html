@@ -1,0 +1,42 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Editar — {{ bloque.titulo or bloque.seccion }}{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <a href="{{ url_for('admin.dashboard') }}">Dashboard</a> › Editar sección
+    </div>
+    <h1>📝 {{ bloque.titulo or bloque.seccion }}</h1>
+  </div>
+  <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline btn-sm">← Volver</a>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>✏️ Sección: <code style="font-family:monospace; font-size:0.85rem; background:var(--crema-d); padding:.1rem .4rem; border-radius:4px;">{{ bloque.seccion }}</code></h2>
+  </div>
+  <div class="card-body">
+    <form method="POST" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+        {{ form.titulo.label }}
+        {{ form.titulo(placeholder='Ej: Nuestra historia') }}
+      </div>
+
+      <div class="form-group">
+        {{ form.texto.label }}
+        {{ form.texto(placeholder='Escribe el contenido de esta sección...', rows=8) }}
+        <p class="form-hint">Este texto aparecerá visible en el sitio público.</p>
+      </div>
+
+      <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+        {{ form.submit(class='btn btn-primary') }}
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
