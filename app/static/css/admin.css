@@ -313,7 +313,7 @@ body { background: var(--crema); }
 .login-wrap {
   background:
     linear-gradient(160deg, rgba(20,45,18,0.82), rgba(20,45,18,0.92)),
-    url("../img/guayaba_hero.png") center / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center / cover no-repeat;
 }
 .login-card {
   background: rgba(255,255,255,0.96);

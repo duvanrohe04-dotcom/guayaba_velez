@@ -133,7 +133,8 @@ Dos volúmenes nombrados sobreviven a redeploys y reinicios:
 > te deja sin sitio. Para respaldar, copia el archivo `guayaba.db` del
 > volumen `db_data`.
 
-La foto del hero vive en `app/static/img/guayaba_hero.png`, **fuera** del
+Las fotos reales del cultivo viven en `app/static/img/` (`finca-*.jpg`,
+`fondo-cultivo.jpg` e `iconos/`), **fuera** del
 volumen de uploads a propósito: si estuviera dentro, el montaje del volumen
 la ocultaría y el sitio saldría sin imagen.
 

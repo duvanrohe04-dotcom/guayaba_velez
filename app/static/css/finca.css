@@ -1,0 +1,36 @@
+/* Fotos reales del cultivo (sustituyen a la imagen genérica anterior).
+   Se carga al final: ajusta recortes y posiciones para cada foto. */
+:root { --foto: url("../img/fondo-cultivo.jpg"); }
+
+/* Hero: marco en arco con la foto de tradición; círculo con el cultivo */
+.photo-frame-img {
+  background: url("../img/finca-tradicion.jpg") center 22% / cover no-repeat !important;
+  animation: none;
+}
+.photo-inset-img {
+  background: url("../img/finca-cultivo.jpg") center 62% / cover no-repeat !important;
+}
+
+/* Hero y secciones con foto de fondo: la franja del cultivo */
+.hero { background-position: center, center, center 55% !important; }
+
+/* Galería: cultivo, árbol con fruta y hojas */
+.g-img { background-size: cover !important; background-repeat: no-repeat !important; }
+.g1 { background-image: url("../img/fondo-cultivo.jpg") !important; background-position: 50% 60% !important; }
+.g2 { background-image: url("../img/finca-arbol.jpg") !important; background-position: 50% 70% !important; }
+.g3 { background-image: url("../img/finca-hojas.jpg") !important; background-position: 50% 78% !important; }
+
+/* Tarjetas de nutrición */
+.nutri-photo { background-size: cover !important; background-repeat: no-repeat !important; }
+.np1 { background-image: url("../img/finca-arbol.jpg") !important; background-position: 50% 62% !important; }
+.np2 { background-image: url("../img/finca-hojas.jpg") !important; background-position: 50% 75% !important; }
+.np3 { background-image: url("../img/finca-tradicion.jpg") !important; background-position: 50% 78% !important; }
+
+/* Historia y fincas */
+.info-block::before { background-size: cover !important; background-repeat: no-repeat !important; background-image: url("../img/finca-tradicion.jpg") !important; background-position: 50% 30% !important; }
+.info-block:nth-child(2)::before { background-image: url("../img/fondo-cultivo.jpg") !important; background-position: 50% 60% !important; }
+
+/* Fondos con velo: encuadres para la franja del cultivo */
+.quote-section { background-position: center, center 60% !important; }
+.regional-banner { background-position: center, center 60% !important; }
+.cta-section { background-position: center, center 70% !important; }

@@ -123,7 +123,7 @@
 .info-block:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(45,90,39,0.2); }
 .info-block::before {
   content: ''; display: block; height: 170px;
-  background: url("../img/guayaba_hero.png") no-repeat; background-size: 240%;
+  background: url("../img/fondo-cultivo.jpg") no-repeat; background-size: 240%;
   background-position: 20% 5%;
 }
 .info-block:nth-child(2)::before { background-position: 85% 95%; }
@@ -200,18 +200,18 @@
   background:
     radial-gradient(circle 320px at 12% 25%, rgba(240,138,126,0.18), transparent 70%),
     linear-gradient(135deg, rgba(13,59,42,0.93), rgba(31,122,77,0.82)),
-    url("../img/guayaba_hero.png") center 35% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center 35% / cover no-repeat;
 }
 .cta-section {
   background:
     radial-gradient(circle 320px at 88% 15%, rgba(240,138,126,0.22), transparent 70%),
     linear-gradient(160deg, rgba(13,59,42,0.92), rgba(8,36,25,0.97)),
-    url("../img/guayaba_hero.png") 80% 90% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") 80% 90% / cover no-repeat;
 }
 .regional-banner {
   background:
     linear-gradient(180deg, rgba(8,36,25,0.86) 0%, rgba(20,87,59,0.70) 50%, rgba(8,36,25,0.92) 100%),
-    url("../img/guayaba_hero.png") center 75% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center 75% / cover no-repeat;
 }
 .section-label { background: linear-gradient(135deg, var(--esm-1), var(--esm-3)); }
 .tl-dot, .feat-icon, .quality-card::before { background: linear-gradient(135deg, var(--esm-4), var(--esm-1)); }

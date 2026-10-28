@@ -10,7 +10,7 @@
   --bosque-2: #1f4a22;
   --bosque-3: #2f6a2f;
   --esm-1: #14301a; --esm-2: #1f4a22; --esm-3: #2f6a2f; --esm-4: #5a9e4f;
-  --foto: url("../img/guayaba_hero.png");
+  --foto: url("../img/fondo-cultivo.jpg");
   --velo-izq: linear-gradient(90deg, rgba(14,36,14,0.82) 0%, rgba(14,36,14,0.52) 50%, rgba(14,36,14,0.18) 100%);
   --velo-abajo: linear-gradient(to bottom, rgba(14,36,14,0.10) 0%, rgba(14,36,14,0.55) 100%);
 }

@@ -61,7 +61,7 @@
   background:
     radial-gradient(ellipse 60% 80% at 15% 30%, rgba(240,138,126,0.20), transparent 60%),
     linear-gradient(135deg, rgba(22,58,20,0.93), rgba(62,122,53,0.84)),
-    url("../img/guayaba_hero.png") center 35% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center 35% / cover no-repeat;
   padding-top: 7rem;
 }
 .quote-mark { color: var(--amarillo); opacity: 0.8; font-size: 5rem; line-height: 0.6; }
@@ -71,7 +71,7 @@
   background:
     radial-gradient(ellipse 50% 70% at 85% 20%, rgba(240,138,126,0.28), transparent 60%),
     linear-gradient(160deg, rgba(22,58,20,0.9), rgba(15,40,13,0.96)),
-    url("../img/guayaba_hero.png") 80% 90% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") 80% 90% / cover no-repeat;
   padding-top: 7rem;
 }
 .cta-tag { background: linear-gradient(135deg, rgba(244,240,138,0.25), rgba(240,138,126,0.25)); border-color: rgba(244,240,138,0.55); }
@@ -114,18 +114,18 @@
   background:
     radial-gradient(ellipse 60% 80% at 15% 30%, rgba(240,138,126,0.12), transparent 60%),
     linear-gradient(135deg, rgba(20,42,17,0.94), rgba(43,82,38,0.88)),
-    url("../img/guayaba_hero.png") center 35% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center 35% / cover no-repeat;
 }
 .cta-section {
   background:
     radial-gradient(ellipse 50% 70% at 85% 20%, rgba(240,138,126,0.16), transparent 60%),
     linear-gradient(160deg, rgba(20,42,17,0.93), rgba(12,30,10,0.97)),
-    url("../img/guayaba_hero.png") 80% 90% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") 80% 90% / cover no-repeat;
 }
 .regional-banner {
   background:
     linear-gradient(180deg, rgba(18,38,15,0.86) 0%, rgba(28,58,25,0.72) 50%, rgba(18,38,15,0.92) 100%),
-    url("../img/guayaba_hero.png") center 75% / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center 75% / cover no-repeat;
 }
 .section-label { background: linear-gradient(135deg, var(--bosque-1), var(--bosque-3)); border-color: rgba(244,240,138,0.25); }
 .tl-dot { background: linear-gradient(135deg, var(--salvia), var(--bosque-1)); }

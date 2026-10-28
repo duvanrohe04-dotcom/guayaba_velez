@@ -5,6 +5,6 @@
 .login-wrap {
   background:
     linear-gradient(160deg, rgba(18,38,15,0.88), rgba(12,30,10,0.95)),
-    url("../img/guayaba_hero.png") center / cover no-repeat;
+    url("../img/fondo-cultivo.jpg") center / cover no-repeat;
 }
 .footer-logo-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.7rem; border: 3px solid rgba(255,255,255,0.35); background: #fff; }
