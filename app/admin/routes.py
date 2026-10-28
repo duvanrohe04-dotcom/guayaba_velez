@@ -6,9 +6,10 @@ from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 
 from app.admin import admin_bp
-from app.admin.forms import EmpresaForm, ContenidoForm, CuentaForm
+from app.admin.forms import EmpresaForm, ContenidoForm, CuentaForm, ProductoForm, AccionForm
+from app.admin.imagenes import guardar_foto_producto, borrar_foto_subida
 from app.extensions import db
-from app.models import Empresa, Contenido, Usuario
+from app.models import Empresa, Contenido, Usuario, Producto
 
 
 def _allowed_file(filename):
@@ -42,8 +43,11 @@ def _borrar_logo_anterior(nombre):
 @login_required
 def dashboard():
     empresa = Empresa.get_instance()
-    secciones = Contenido.query.order_by(Contenido.orden).all()
-    return render_template('admin/dashboard.html', empresa=empresa, secciones=secciones)
+    # Las claves que empiezan por "_" son marcas internas, no textos editables.
+    secciones = Contenido.query.filter(~Contenido.seccion.startswith('_')).order_by(Contenido.orden).all()
+    total_productos = Producto.query.filter_by(activo=True).count()
+    return render_template('admin/dashboard.html', empresa=empresa, secciones=secciones,
+                           total_productos=total_productos)
 
 
 @admin_bp.route('/empresa', methods=['GET', 'POST'])
@@ -104,6 +108,82 @@ def editar_contenido(seccion):
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/editar_contenido.html', form=form, bloque=bloque)
+
+
+@admin_bp.route('/productos')
+@login_required
+def productos():
+    lista = Producto.query.order_by(Producto.orden, Producto.id).all()
+    return render_template('admin/productos.html', productos=lista, accion=AccionForm())
+
+
+@admin_bp.route('/productos/nuevo', methods=['GET', 'POST'])
+@admin_bp.route('/productos/<int:pid>/editar', methods=['GET', 'POST'])
+@login_required
+def editar_producto(pid=None):
+    producto = db.get_or_404(Producto, pid) if pid else None
+    form = ProductoForm(obj=producto)
+
+    if form.validate_on_submit():
+        carpeta = current_app.config['UPLOAD_FOLDER']
+        foto_nueva = None
+        archivo = form.imagen.data
+        if archivo and getattr(archivo, 'filename', ''):
+            foto_nueva = guardar_foto_producto(archivo, carpeta)
+            if foto_nueva is None:
+                flash('No se pudo leer esa imagen. Prueba con un JPG o PNG.', 'danger')
+                return render_template('admin/editar_producto.html', form=form, producto=producto)
+
+        if producto is None:
+            ultimo = db.session.query(db.func.max(Producto.orden)).scalar() or 0
+            producto = Producto(orden=form.orden.data or ultimo + 1)
+            db.session.add(producto)
+        else:
+            producto.orden = form.orden.data if form.orden.data is not None else producto.orden
+
+        producto.nombre = form.nombre.data.strip()
+        producto.descripcion = (form.descripcion.data or '').strip()
+        producto.etiquetas = (form.etiquetas.data or '').strip()
+        producto.cinta = (form.cinta.data or '').strip() or None
+        producto.activo = bool(form.activo.data)
+
+        foto_anterior = producto.imagen
+        if foto_nueva:
+            producto.imagen = foto_nueva
+        db.session.commit()
+
+        # La foto anterior solo se borra después de guardar bien, y solo si era subida.
+        if foto_nueva and foto_anterior and foto_anterior != foto_nueva:
+            borrar_foto_subida(foto_anterior, carpeta)
+
+        flash('Producto guardado.', 'success')
+        return redirect(url_for('admin.productos'))
+
+    return render_template('admin/editar_producto.html', form=form, producto=producto)
+
+
+@admin_bp.route('/productos/<int:pid>/visibilidad', methods=['POST'])
+@login_required
+def visibilidad_producto(pid):
+    if AccionForm().validate_on_submit():
+        producto = db.get_or_404(Producto, pid)
+        producto.activo = not producto.activo
+        db.session.commit()
+        flash(f'«{producto.nombre}» ahora está {"visible" if producto.activo else "oculto"} en el sitio.', 'success')
+    return redirect(url_for('admin.productos'))
+
+
+@admin_bp.route('/productos/<int:pid>/eliminar', methods=['POST'])
+@login_required
+def eliminar_producto(pid):
+    if AccionForm().validate_on_submit():
+        producto = db.get_or_404(Producto, pid)
+        nombre, foto = producto.nombre, producto.imagen
+        db.session.delete(producto)
+        db.session.commit()
+        borrar_foto_subida(foto, current_app.config['UPLOAD_FOLDER'])
+        flash(f'Producto «{nombre}» eliminado.', 'success')
+    return redirect(url_for('admin.productos'))
 
 
 @admin_bp.route('/cuenta', methods=['GET', 'POST'])

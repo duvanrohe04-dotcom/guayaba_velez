@@ -116,6 +116,12 @@
   .red-btn { flex: 1 1 100%; justify-content: center; }
 }
 
+/* Panel: los botones verdes llevan texto blanco (la regla del botón del sitio
+   público, con texto verde, los dejaba ilegibles) */
+.btn.btn-primary { color: #fff !important; }
+.btn.btn-peligro { color: #c0392b; }
+.btn.btn-peligro:hover { color: #fff; }
+
 /* ══ COMPATIBILIDAD: Safari/iPhone, Android y pantallas táctiles ══ */
 /* Vidrio esmerilado: Safari necesita el prefijo -webkit- */
 .hero-label, .hero-chips li, .ticker-item, .regional-phrase-item, .photo-hero-badge,

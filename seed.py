@@ -7,7 +7,7 @@ Uso:
 """
 from app import create_app
 from app.extensions import db
-from app.models import Usuario, Empresa, Contenido
+from app.models import Usuario, Empresa, Contenido, Producto
 
 app = create_app()
 
@@ -78,6 +78,28 @@ CONTENIDO_BASE = [
 ]
 
 
+PRODUCTOS_BASE = [
+    dict(
+        nombre='Conserva natural de guayaba',
+        descripcion=('Un producto natural y tradicional, elaborado con guayaba de la '
+                     'vereda Guayabal y empacado en hoja de plátano.'),
+        etiquetas='🌿 Natural, 🏡 Tradicional, 🍃 Empacada en hoja de plátano',
+        cinta='Producto tradicional',
+        imagen='img/productos/conserva-hoja.jpg',
+        orden=1,
+    ),
+    dict(
+        nombre='Bocadillo rojo',
+        descripcion=('El bocadillo rojo de guayaba, dulce y tradicional, hecho con la '
+                     'guayaba regional de nuestras fincas.'),
+        etiquetas='🍓 Guayaba roja, 🏡 Tradicional, 🤝 Pedidos por encargo',
+        cinta='Clásico veleño',
+        imagen='img/productos/bocadillo-rojo.jpg',
+        orden=2,
+    ),
+]
+
+
 def run_seed():
     with app.app_context():
         db.create_all()
@@ -106,6 +128,16 @@ def run_seed():
             if existente is None:
                 db.session.add(Contenido(**datos))
                 print(f"Sección creada: {datos['seccion']}")
+
+        # Productos iniciales: se crean UNA sola vez. La marca '_productos_semilla'
+        # evita que, si el administrador los borra o los cambia, un deploy los
+        # vuelva a crear.
+        if Contenido.get_por_seccion('_productos_semilla') is None:
+            if Producto.query.count() == 0:
+                for datos in PRODUCTOS_BASE:
+                    db.session.add(Producto(**datos))
+                print('Productos iniciales creados.')
+            db.session.add(Contenido(seccion='_productos_semilla', titulo='marca interna', texto='1', orden=999))
 
         db.session.commit()
         print('Seed completado.')

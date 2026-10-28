@@ -136,10 +136,41 @@ body {
   .quick { grid-template-columns: repeat(3, 1fr); }
   .sections-grid { grid-template-columns: 1fr 1fr; }
 }
+/* ── Productos (lista y formulario) ── */
+.prod-ayuda { color: #6b7d63; font-size: 0.9rem; margin: -0.4rem 0 1.2rem; }
+.prod-lista { display: flex; flex-direction: column; gap: 0.9rem; }
+.prod-item {
+  display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 1rem; align-items: center;
+  background: #fff; border-radius: 20px; padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(45,90,39,0.08); box-shadow: 0 6px 18px rgba(45,90,39,0.08);
+}
+.prod-oculto { opacity: 0.62; }
+.prod-thumb { width: 84px; height: 84px; border-radius: 16px; overflow: hidden; background: #f3efe3; display: grid; place-items: center; font-size: 2rem; box-shadow: 0 6px 14px rgba(0,0,0,0.12); }
+.prod-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.prod-nombre { font-weight: 700; color: var(--bosque-2, #1f4a22); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.prod-num { background: linear-gradient(135deg, var(--bosque-3, #2f6a2f), var(--bosque-1, #14301a)); color: #fff; width: 24px; height: 24px; border-radius: 50%; font-size: 0.72rem; display: inline-grid; place-items: center; }
+.prod-estado { font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.6rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+.prod-estado.on { background: #d4f5cc; color: #1f4a22; }
+.prod-estado.off { background: #ececec; color: #6b6b6b; }
+.prod-desc { font-size: 0.82rem; color: #6b7d63; margin-top: 0.15rem; }
+.prod-acciones { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.prod-acciones form { margin: 0; }
+.btn-peligro { background: #fff0ed; color: #c0392b; border: 1.5px solid #f4b8ae; }
+.btn-peligro:hover { background: #c0392b; color: #fff; border-color: #c0392b; }
+.prod-preview { width: 100%; max-width: 280px; border-radius: 16px; margin-bottom: 0.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.form-check { display: flex; align-items: center; gap: 0.6rem; }
+.form-check input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--bosque-3, #2f6a2f); }
+.form-check label { margin: 0; }
+.empty-note { background: #fff; border-radius: 18px; padding: 1.6rem; text-align: center; color: #6b7d63; border: 1px dashed rgba(45,90,39,0.25); }
+@media (min-width: 720px) {
+  .prod-item { grid-template-columns: 84px minmax(0, 1fr) auto; }
+  .prod-acciones { grid-column: auto; justify-content: flex-end; }
+}
+
 .sections-grid, .quick { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 720px) {
   .sections-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .quick { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .quick { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .stat > div { min-width: 0; }

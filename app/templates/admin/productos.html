@@ -1,0 +1,50 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Productos{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb"><a href="{{ url_for('admin.dashboard') }}">Dashboard</a> › Productos</div>
+    <h1>🍯 Nuestros productos</h1>
+  </div>
+  <a href="{{ url_for('admin.editar_producto') }}" class="btn btn-light btn-sm">➕ Agregar producto</a>
+</div>
+
+<p class="prod-ayuda">Estos productos aparecen en la sección «Nuestros productos» del sitio, en este orden. Cada uno lleva un botón para pedirlo por WhatsApp.</p>
+
+<div class="prod-lista">
+  {% for p in productos %}
+  <article class="prod-item {{ '' if p.activo else 'prod-oculto' }}">
+    <div class="prod-thumb">
+      {% if p.imagen %}
+        <img src="{{ url_for('static', filename=p.imagen) }}" alt="{{ p.nombre }}">
+      {% else %}
+        <span aria-hidden="true">🍯</span>
+      {% endif %}
+    </div>
+    <div class="prod-info">
+      <div class="prod-nombre">
+        <span class="prod-num">{{ loop.index }}</span> {{ p.nombre }}
+        <span class="prod-estado {{ 'on' if p.activo else 'off' }}">{{ 'Visible' if p.activo else 'Oculto' }}</span>
+      </div>
+      <div class="prod-desc">{{ p.descripcion | truncate(110) if p.descripcion else 'Sin descripción' }}</div>
+    </div>
+    <div class="prod-acciones">
+      <a href="{{ url_for('admin.editar_producto', pid=p.id) }}" class="btn btn-primary btn-sm">✏️ Editar</a>
+      <form method="POST" action="{{ url_for('admin.visibilidad_producto', pid=p.id) }}">
+        {{ accion.csrf_token }}
+        <button type="submit" class="btn btn-outline btn-sm">{{ '🙈 Ocultar' if p.activo else '👁️ Mostrar' }}</button>
+      </form>
+      <form method="POST" action="{{ url_for('admin.eliminar_producto', pid=p.id) }}"
+            onsubmit="return confirm('¿Eliminar «{{ p.nombre | replace("'", "") }}»? Esta acción no se puede deshacer.');">
+        {{ accion.csrf_token }}
+        <button type="submit" class="btn btn-peligro btn-sm">🗑️ Eliminar</button>
+      </form>
+    </div>
+  </article>
+  {% else %}
+  <div class="empty-note">Todavía no hay productos. Agrega el primero con el botón «Agregar producto».</div>
+  {% endfor %}
+</div>
+
+{% endblock %}

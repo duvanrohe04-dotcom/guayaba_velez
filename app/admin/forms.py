@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, TextAreaField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Optional, Length, EqualTo
+from wtforms import StringField, TextAreaField, PasswordField, SubmitField, IntegerField, BooleanField
+from wtforms.validators import DataRequired, Optional, Length, EqualTo, NumberRange
 
 
 class EmpresaForm(FlaskForm):
@@ -21,6 +21,32 @@ class ContenidoForm(FlaskForm):
     titulo = StringField('Título de la sección', validators=[Optional(), Length(max=200)])
     texto = TextAreaField('Texto', validators=[Optional()])
     submit = SubmitField('Guardar sección')
+
+
+class ProductoForm(FlaskForm):
+    nombre = StringField('Nombre del producto', validators=[DataRequired(message='Escribe el nombre.'), Length(max=150)])
+    descripcion = TextAreaField('Descripción', validators=[Optional(), Length(max=600)])
+    etiquetas = StringField(
+        'Etiquetas (separadas por coma)',
+        validators=[Optional(), Length(max=300)],
+        render_kw={'placeholder': 'Natural, Tradicional, Empacada en hoja de plátano'},
+    )
+    cinta = StringField(
+        'Rótulo sobre la foto (opcional)',
+        validators=[Optional(), Length(max=60)],
+        render_kw={'placeholder': 'Producto tradicional'},
+    )
+    imagen = FileField(
+        'Foto del producto',
+        validators=[FileAllowed(['png', 'jpg', 'jpeg', 'webp', 'gif'], 'Solo se permiten imágenes.')]
+    )
+    orden = IntegerField('Posición en la lista (1 = primero)', validators=[Optional(), NumberRange(min=0, max=999)], default=0)
+    activo = BooleanField('Mostrar en el sitio', default=True)
+    submit = SubmitField('Guardar producto')
+
+
+class AccionForm(FlaskForm):
+    """Formulario vacío: solo aporta el token CSRF a los botones de eliminar / ocultar."""
 
 
 class CuentaForm(FlaskForm):

@@ -5,11 +5,14 @@
     radial-gradient(circle at 92% 92%, rgba(244,240,138,0.24), transparent 45%),
     #fff8f1;
 }
+/* Cualquier cantidad de productos: tarjetas de ancho limitado, centradas */
 .productos-grid {
-  display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.8rem;
-  max-width: 980px; margin: 0.5rem auto 0; text-align: left;
+  display: grid; gap: 1.8rem; justify-content: center; text-align: left;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 440px));
+  margin: 0.5rem auto 0;
 }
-@media (min-width: 760px) { .productos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.producto-foto.sin-foto { display: grid; place-items: center; background: linear-gradient(135deg, #f8dcd2, #fbf1c2); }
+.producto-emoji { font-size: 4rem; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2)); }
 
 .producto-card {
   position: relative; display: flex; flex-direction: column; overflow: hidden;

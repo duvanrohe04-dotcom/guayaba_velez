@@ -45,6 +45,7 @@ Usuario/contraseña iniciales: los definidos en `.env` (`ADMIN_USERNAME` /
 | `/admin` | admin | panel: empresa, secciones, acceso |
 | `/admin/empresa` | admin | logo, nombre y redes sociales |
 | `/admin/contenido/<seccion>` | admin | editar un texto del sitio |
+| `/admin/productos` | admin | agregar, editar, ocultar y eliminar productos (sin precio; pedido por WhatsApp) |
 | `/admin/cuenta` | admin | cambiar usuario y contraseña |
 | `/login` · `/logout` | — | entrar / salir del panel |
 | `/healthz` | — | sonda de vida para Docker (no toca la BD) |

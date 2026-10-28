@@ -6,5 +6,6 @@ en que los usen los blueprints.
 from app.models.usuario import Usuario
 from app.models.empresa import Empresa
 from app.models.contenido import Contenido
+from app.models.producto import Producto
 
-__all__ = ['Usuario', 'Empresa', 'Contenido']
+__all__ = ['Usuario', 'Empresa', 'Contenido', 'Producto']

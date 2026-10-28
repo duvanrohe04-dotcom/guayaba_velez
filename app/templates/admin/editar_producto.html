@@ -1,0 +1,77 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}{{ 'Editar producto' if producto else 'Nuevo producto' }}{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">
+      <a href="{{ url_for('admin.dashboard') }}">Dashboard</a> ›
+      <a href="{{ url_for('admin.productos') }}">Productos</a> › {{ 'Editar' if producto else 'Nuevo' }}
+    </div>
+    <h1>{{ '✏️ Editar producto' if producto else '➕ Nuevo producto' }}</h1>
+  </div>
+  <a href="{{ url_for('admin.productos') }}" class="btn btn-outline btn-sm">← Volver</a>
+</div>
+
+<div class="card">
+  <div class="card-header"><h2>🍯 Datos del producto</h2></div>
+  <div class="card-body">
+    <form method="POST" enctype="multipart/form-data" novalidate>
+      {{ form.hidden_tag() }}
+
+      {% for campo in [form.nombre, form.descripcion, form.etiquetas, form.cinta, form.imagen, form.orden] %}
+        {% for error in campo.errors %}<div class="flash danger">{{ error }}</div>{% endfor %}
+      {% endfor %}
+
+      <div class="form-group">
+        {{ form.nombre.label }}
+        {{ form.nombre(placeholder='Ej: Conserva natural de guayaba') }}
+      </div>
+
+      <div class="form-group">
+        {{ form.descripcion.label }}
+        {{ form.descripcion(rows=4, placeholder='Cuéntale al cliente de qué se trata el producto.') }}
+        <p class="form-hint">Máximo 600 caracteres.</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.etiquetas.label }}
+        {{ form.etiquetas() }}
+        <p class="form-hint">Palabras cortas separadas por coma. Salen como cápsulas bajo la descripción.</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.cinta.label }}
+        {{ form.cinta() }}
+        <p class="form-hint">Texto pequeño que aparece sobre la esquina de la foto.</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.imagen.label }}
+        {% if producto and producto.imagen %}
+          <img src="{{ url_for('static', filename=producto.imagen) }}" alt="Foto actual" class="prod-preview">
+          <p class="form-hint">Foto actual. Sube otra solo si quieres cambiarla.</p>
+        {% endif %}
+        {{ form.imagen(accept='image/*') }}
+        <p class="form-hint">JPG, PNG o WEBP · máx. 5 MB. Se ajusta sola al tamaño de la tarjeta; una foto horizontal queda mejor.</p>
+      </div>
+
+      <div class="form-group">
+        {{ form.orden.label }}
+        {{ form.orden(min=0, max=999) }}
+        <p class="form-hint">Los números menores salen primero. Déjalo en blanco para ponerlo al final.</p>
+      </div>
+
+      <div class="form-group form-check">
+        {{ form.activo() }} {{ form.activo.label }}
+      </div>
+
+      <div style="display:flex; gap:.75rem; align-items:center; flex-wrap:wrap;">
+        {{ form.submit(class='btn btn-primary') }}
+        <a href="{{ url_for('admin.productos') }}" class="btn btn-outline">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
