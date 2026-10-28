@@ -1,0 +1,73 @@
+/* Agroturismo: qué se conoce + formulario de reserva (se envía por WhatsApp). */
+.agro-section {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(240,138,126,0.16), transparent 40%),
+    radial-gradient(circle at 94% 90%, rgba(244,240,138,0.22), transparent 45%),
+    #fff8f1;
+}
+.agro-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.8rem; text-align: left; margin-top: 0.5rem;
+}
+@media (min-width: 960px) { .agro-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 2.4rem; align-items: start; } }
+
+/* El menú de arriba solo muestra "Agroturismo" cuando hay espacio de sobra */
+@media (max-width: 1329px) { .nav-links .nav-extra { display: none; } }
+
+/* Columna izquierda */
+.agro-info {
+  background: #fff; border-radius: 28px; overflow: hidden; border-top: 5px solid #f08a7e;
+  box-shadow: 0 16px 42px rgba(20,48,26,0.14);
+}
+.agro-foto {
+  height: clamp(180px, 28vw, 260px);
+  background:
+    linear-gradient(to top, rgba(14,36,14,0.35), transparent 55%),
+    url("../img/comercio-justo.jpg") center 55% / cover no-repeat;
+}
+.agro-subtitulo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #14301a; margin: 1.3rem 1.5rem 0.3rem; }
+.agro-lista { list-style: none; display: grid; gap: 0.9rem; padding: 0.6rem 1.5rem 1.6rem; }
+.agro-lista li { display: flex; gap: 1rem; align-items: center; }
+.agro-lista strong { display: block; color: #14301a; font-size: 1rem; }
+.agro-lista p { color: #4a5e41; font-size: 0.88rem; line-height: 1.5; }
+.agro-ico.ph { flex-shrink: 0; width: 64px; height: 64px; border-radius: 18px; border: 3px solid #fff; box-shadow: 0 8px 18px rgba(20,48,26,0.25); }
+
+/* Tarjeta de reserva */
+.agro-form-card {
+  background:
+    linear-gradient(160deg, rgba(10,28,10,0.94), rgba(20,48,26,0.90)),
+    url("../img/fondo-cultivo.jpg") center / cover no-repeat;
+  color: #fff; border-radius: 28px; padding: 1.8rem 1.6rem 1.9rem;
+  box-shadow: 0 20px 48px rgba(10,28,10,0.35);
+}
+.agro-form-titulo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff6c8; margin-bottom: 0.3rem; }
+.agro-form-sub { font-size: 0.9rem; opacity: 0.9; margin-bottom: 1.2rem; line-height: 1.5; }
+.agro-form { display: grid; gap: 0.95rem; }
+.agro-fila { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 0.8rem; }
+.agro-campo { display: grid; gap: 0.35rem; }
+.agro-campo label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: #ffe9a8; }
+.agro-campo input, .agro-campo textarea {
+  width: 100%; font: inherit; font-size: 1rem; color: #14301a;
+  background: rgba(255,255,255,0.96); border: 2px solid transparent; border-radius: 14px;
+  padding: 0.75rem 0.9rem; outline: none; transition: border-color .2s ease, box-shadow .2s ease;
+}
+.agro-campo textarea { resize: vertical; min-height: 84px; }
+.agro-campo input:focus, .agro-campo textarea:focus { border-color: #f4f08a; box-shadow: 0 0 0 4px rgba(244,240,138,0.30); }
+.agro-campo input.invalido { border-color: #ff8a7a; box-shadow: 0 0 0 4px rgba(255,138,122,0.28); }
+.agro-error { background: rgba(255,138,122,0.18); border: 1px solid rgba(255,138,122,0.6); color: #ffd9d3; padding: 0.6rem 0.9rem; border-radius: 12px; font-size: 0.86rem; }
+.agro-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; cursor: pointer; border: 0;
+  background: linear-gradient(135deg, #25d366, #128c4a); color: #fff; font: inherit; font-weight: 700; font-size: 1rem;
+  padding: 0.95rem 1.6rem; border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.35);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.agro-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.45); filter: brightness(1.06); }
+.agro-btn:focus-visible { outline: 3px solid #f4f08a; outline-offset: 3px; }
+
+@media (max-width: 639px) {
+  .agro-fila { grid-template-columns: minmax(0, 1fr); }
+  .agro-form-card { padding: 1.5rem 1.2rem 1.6rem; }
+  .agro-lista { padding: 0.5rem 1.1rem 1.3rem; }
+  .agro-subtitulo { margin-left: 1.1rem; margin-right: 1.1rem; }
+}
+@media (hover: none) { .agro-btn:hover { transform: none; } }
