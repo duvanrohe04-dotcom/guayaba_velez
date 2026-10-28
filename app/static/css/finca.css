@@ -116,6 +116,13 @@
   .red-btn { flex: 1 1 100%; justify-content: center; }
 }
 
+/* Foto de la charla dentro de la tarjeta de asesoría */
+.feat-figura { margin: 0.9rem 0 0.2rem; border-radius: 18px; overflow: hidden; box-shadow: 0 12px 28px rgba(20,48,26,0.22); background: #e9e2d4; }
+.feat-figura img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% 55%; transition: transform .8s ease; }
+.features-list li:hover .feat-figura img { transform: scale(1.04); }
+.feat-figura figcaption { padding: 0.5rem 0.9rem; font-size: 0.78rem; font-weight: 600; color: #4a5e41; background: #fffaf0; }
+@media (hover: none) { .features-list li:hover .feat-figura img { transform: none; } }
+
 /* Panel: los botones verdes llevan texto blanco (la regla del botón del sitio
    público, con texto verde, los dejaba ilegibles) */
 .btn.btn-primary { color: #fff !important; }
