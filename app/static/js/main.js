@@ -10,7 +10,7 @@
   var animados = document.querySelectorAll(
     '.section-title, .section-label, .photo-hero-title, .quote-text, .quote-mark, ' +
     '.regional-title, .rstat-value, .cta-title, .cta-tag, .footer-logo, ' +
-    '.hero h2 span, .hero-copy .hero-sub'
+    '.hero h2 span, .hero-copy .hero-sub, .cj-title'
   );
   if ('IntersectionObserver' in window) {
     var pausador = new IntersectionObserver(function (entries) {
@@ -21,7 +21,7 @@
     animados.forEach(function (el) { pausador.observe(el); });
   }
   var items = document.querySelectorAll(
-    '.producto-card, .nutri-card, .quality-card, .timeline-step, .features-list li, ' +
+    '.cj-pilar, .producto-card, .nutri-card, .quality-card, .timeline-step, .features-list li, ' +
     '.regional-phrase-item, .info-block, .rstat, .quote-inner, .cta-inner'
   );
   items.forEach(function (el) { el.classList.add('reveal'); });
