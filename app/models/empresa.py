@@ -29,11 +29,24 @@ class Empresa(db.Model):
         return empresa
 
     @property
+    def whatsapp_numero(self):
+        """
+        Número listo para wa.me: solo dígitos y con indicativo de país.
+        Acepta '+57 300 123 4567', '(57) 300-123-4567', '573001234567' o el
+        celular colombiano sin indicativo ('300 123 4567' -> '573001234567').
+        Devuelve None si no hay un número usable.
+        """
+        digitos = ''.join(filter(str.isdigit, self.whatsapp or ''))
+        if digitos.startswith('00'):
+            digitos = digitos[2:]
+        if len(digitos) == 10 and digitos.startswith('3'):   # celular de Colombia sin 57
+            digitos = '57' + digitos
+        return digitos if len(digitos) >= 11 else None
+
+    @property
     def whatsapp_link(self):
-        if not self.whatsapp:
-            return None
-        numero = ''.join(filter(str.isdigit, self.whatsapp))
-        return f'https://wa.me/{numero}'
+        numero = self.whatsapp_numero
+        return f'https://wa.me/{numero}' if numero else None
 
     def __repr__(self):
         return f'<Empresa {self.nombre}>'

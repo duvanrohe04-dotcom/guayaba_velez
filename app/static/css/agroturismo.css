@@ -40,20 +40,7 @@
   box-shadow: 0 20px 48px rgba(10,28,10,0.35);
 }
 .agro-form-titulo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff6c8; margin-bottom: 0.3rem; }
-.agro-form-sub { font-size: 0.9rem; opacity: 0.9; margin-bottom: 1.2rem; line-height: 1.5; }
-.agro-form { display: grid; gap: 0.95rem; }
-.agro-fila { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 0.8rem; }
-.agro-campo { display: grid; gap: 0.35rem; }
-.agro-campo label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: #ffe9a8; }
-.agro-campo input, .agro-campo textarea {
-  width: 100%; font: inherit; font-size: 1rem; color: #14301a;
-  background: rgba(255,255,255,0.96); border: 2px solid transparent; border-radius: 14px;
-  padding: 0.75rem 0.9rem; outline: none; transition: border-color .2s ease, box-shadow .2s ease;
-}
-.agro-campo textarea { resize: vertical; min-height: 84px; }
-.agro-campo input:focus, .agro-campo textarea:focus { border-color: #f4f08a; box-shadow: 0 0 0 4px rgba(244,240,138,0.30); }
-.agro-campo input.invalido { border-color: #ff8a7a; box-shadow: 0 0 0 4px rgba(255,138,122,0.28); }
-.agro-error { background: rgba(255,138,122,0.18); border: 1px solid rgba(255,138,122,0.6); color: #ffd9d3; padding: 0.6rem 0.9rem; border-radius: 12px; font-size: 0.86rem; }
+.agro-form-sub { font-size: 1rem; opacity: 0.95; margin-bottom: 1.5rem; line-height: 1.65; }
 .agro-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; cursor: pointer; border: 0;
   background: linear-gradient(135deg, #25d366, #128c4a); color: #fff; font: inherit; font-weight: 700; font-size: 1rem;
@@ -65,9 +52,14 @@
 .agro-btn:focus-visible { outline: 3px solid #f4f08a; outline-offset: 3px; }
 
 @media (max-width: 639px) {
-  .agro-fila { grid-template-columns: minmax(0, 1fr); }
   .agro-form-card { padding: 1.5rem 1.2rem 1.6rem; }
   .agro-lista { padding: 0.5rem 1.1rem 1.3rem; }
   .agro-subtitulo { margin-left: 1.1rem; margin-right: 1.1rem; }
 }
 @media (hover: none) { .agro-btn:hover { transform: none; } }
+
+/* Tarjeta de reserva: un solo botón de WhatsApp */
+.agro-reserva { display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center; min-height: 100%; padding: 2.4rem 1.8rem; }
+.agro-reserva .agro-form-titulo { font-size: clamp(1.6rem, 3.4vw, 2.1rem); }
+.agro-reserva .agro-btn { font-size: 1.08rem; padding: 1.05rem 2rem; max-width: 100%; }
+@media (max-width: 639px) { .agro-reserva { padding: 1.8rem 1.2rem; } .agro-reserva .agro-btn { width: 100%; } }
