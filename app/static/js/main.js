@@ -1,5 +1,19 @@
 ﻿(function () {
   document.documentElement.classList.add('js');
+
+  // Cabecera compacta al bajar: el logo grande solo se ve arriba del todo
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var ticking = false;
+    var actualizar = function () {
+      header.classList.toggle('compacta', window.scrollY > 60);
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(actualizar); }
+    }, { passive: true });
+    actualizar();
+  }
   var items = document.querySelectorAll(
     '.nutri-card, .quality-card, .timeline-step, .features-list li, ' +
     '.regional-phrase-item, .info-block, .rstat, .quote-inner, .cta-inner'
