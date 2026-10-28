@@ -484,12 +484,10 @@
       <span class="nav-icon">🌱</span>
       Proceso
     </a>
-    {% if empresa.whatsapp_link %}
-    <a href="{{ empresa.whatsapp_link }}" target="_blank">
+    <a href="{{ wa_url }}" target="_blank" rel="noopener">
       <span class="nav-icon">💬</span>
       Pedir
     </a>
-    {% endif %}
   </nav>
 
   <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>

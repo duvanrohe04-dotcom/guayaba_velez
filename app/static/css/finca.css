@@ -30,6 +30,44 @@
 .info-block::before { background-size: cover !important; background-repeat: no-repeat !important; background-image: url("../img/finca-tradicion.jpg") !important; background-position: 50% 30% !important; }
 .info-block:nth-child(2)::before { background-image: url("../img/fondo-cultivo.jpg") !important; background-position: 50% 60% !important; }
 
+/* ══ CINTA DE FRASES: debe correr igual en celular y en computador ══
+   Antes se quedaba quieta en el celular por dos motivos:
+   1) "reducir movimiento" (muy común en celulares con ahorro de batería)
+      la apagaba por completo; ahora corre siempre, solo más lenta.
+   2) :hover se queda "pegado" tras un toque en pantallas táctiles y
+      pausaba la cinta; ahora solo pausa si hay mouse de verdad. */
+.ticker-track {
+  animation: ticker-scroll 42s linear infinite !important;
+  will-change: transform;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.ticker-track:hover { animation-play-state: running; }
+@media (hover: hover) and (pointer: fine) {
+  .ticker-track:hover { animation-play-state: paused; }
+}
+@media (max-width: 639px) {
+  .ticker-track { animation-duration: 30s !important; }   /* pantalla chica: recorre más rápido */
+  .ticker-item { font-size: 0.78rem; padding: 0.3rem 0.9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation-duration: 70s !important; }   /* más suave, pero no se detiene */
+}
+
+/* ══ CELULAR: nada se sale de la pantalla ══ */
+html, body { max-width: 100%; overflow-x: clip; }
+@media (max-width: 639px) {
+  .features-list li { display: grid; grid-template-columns: 60px 1fr; column-gap: 0.9rem; align-items: start; }
+  .feat-icon.ph { width: 60px; height: 60px; border-radius: 16px; }
+  .feat-body { min-width: 0; }
+  .feat-badge { grid-column: 2; justify-self: start; margin: 0.5rem 0 0; }
+  .tl-dot.ph { width: 76px; height: 76px; }
+  .nutri-icon-wrap.ph { width: 72px; height: 72px; }
+  .regional-phrase-item .rp-icon.ph { width: 68px; height: 68px; }
+  .float-tag { font-size: 0.68rem; padding: 0.35rem 0.7rem; }
+  .float-tag.t1 { right: 2%; }
+  .float-tag.t2 { left: 2%; }
+}
+
 /* ══ MARCA: logo y nombre con brillo y animación ══ */
 .brand { gap: 1.1rem; text-decoration: none; }
 
