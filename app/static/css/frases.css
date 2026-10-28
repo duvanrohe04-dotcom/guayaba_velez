@@ -1,0 +1,165 @@
+/* Diseño de frases: oro con destello, resplandor, chispas y detalles.
+   Mismo lenguaje que el logo y el nombre de la cabecera, aplicado a todos
+   los textos destacados. Se carga al final; para una frase nueva basta con
+   usar un título (h2) o la clase .frase-oro. */
+
+@keyframes brilloOro   { 0% { background-position: 120% 0; } 100% { background-position: -120% 0; } }
+@keyframes barridoVerde { 0%, 15% { background-position: 110% 0; } 70%, 100% { background-position: -10% 0; } }
+@keyframes resplandor {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255,236,170,0.40)) drop-shadow(0 3px 8px rgba(0,0,0,0.45)); }
+  50%      { filter: drop-shadow(0 0 16px rgba(255,236,170,0.90)) drop-shadow(0 3px 8px rgba(0,0,0,0.45)); }
+}
+@keyframes chispaFrase { 0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); } 50% { opacity: 1; transform: scale(1.1) rotate(40deg); } }
+@keyframes rayoFrase   { to { background-position: -200% 0; } }
+@keyframes comillaLuz  { 0%, 100% { text-shadow: 0 0 10px rgba(244,240,138,0.4); } 50% { text-shadow: 0 0 26px rgba(244,240,138,1), 0 0 4px #fff; } }
+
+/* Mezcla de colores para texto con destello dorado (sobre fondos oscuros) */
+.hero h2 span, .regional-title em, .cta-title, .frase-oro {
+  background-image: linear-gradient(100deg, #ffd0c4 0%, #fff4c8 22%, #ffffff 36%, #ffd98a 50%, #fff4c8 64%, #ffd0c4 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: brilloOro 5.5s linear infinite;
+}
+
+/* ── HERO: "Tu energía para todos los días" ─────────────────── */
+.hero h2 {
+  font-size: clamp(2.2rem, 5.6vw, 4rem); line-height: 1.12; letter-spacing: -0.012em;
+  text-shadow: 0 4px 26px rgba(0,0,0,0.5);
+  position: relative;
+}
+.hero h2 span {
+  display: inline-block; padding: 0 0.12em 0.06em 0; position: relative;
+  filter: drop-shadow(0 0 14px rgba(255,226,160,0.75));
+  text-shadow: none;
+}
+.hero h2 span::after {                         /* chispa ✦ */
+  content: '✦'; position: absolute; top: -0.05em; right: -0.32em; font-size: 0.34em;
+  -webkit-text-fill-color: #fffbe0; color: #fffbe0; background: none;
+  text-shadow: 0 0 10px #ffe9a8, 0 0 22px #f4f08a;
+  animation: chispaFrase 2.6s ease-in-out infinite;
+}
+.hero h2::before {                             /* chispa pequeña al inicio */
+  content: '✦'; position: absolute; left: -0.5em; top: 0.1em; font-size: 0.3em; color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #f08a7e; opacity: 0;
+  animation: chispaFrase 2.6s ease-in-out 1.3s infinite;
+}
+.hero-copy .hero-sub { position: relative; padding-top: 1.1rem; }
+.hero-copy .hero-sub::before {                 /* rayo de luz entre el título y el texto */
+  content: ''; position: absolute; top: 0; left: 0; width: 110px; height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, transparent, #f4f08a, #ffffff, #f08a7e, transparent);
+  background-size: 200% 100%; box-shadow: 0 0 12px rgba(244,240,138,0.85);
+  animation: rayoFrase 3s linear infinite;
+}
+@media (max-width: 899px) { .hero-copy .hero-sub::before { left: 50%; transform: translateX(-50%); } }
+
+/* ── Títulos de sección (fondo claro): verde profundo con barrido coral ── */
+.section-title {
+  background-image: linear-gradient(100deg, #14301a 0%, #14301a 42%, #d9625a 50%, #14301a 58%, #14301a 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: barridoVerde 7s ease-in-out infinite;
+}
+.section-title::after { box-shadow: 0 0 12px rgba(240,138,126,0.7); }
+.section-label { box-shadow: 0 6px 16px rgba(20,48,26,0.3), 0 0 0 0 rgba(244,240,138,0.5); animation: pulsoEtiqueta 3.4s ease-in-out infinite; }
+@keyframes pulsoEtiqueta {
+  0%, 100% { box-shadow: 0 6px 16px rgba(20,48,26,0.3), 0 0 0 0 rgba(244,240,138,0.0); }
+  50%      { box-shadow: 0 6px 16px rgba(20,48,26,0.3), 0 0 18px 3px rgba(244,240,138,0.55); }
+}
+
+/* ── Frase sobre la foto ("Cultivada en las fincas…") ─────────── */
+.photo-hero-title {
+  padding-left: 1rem; position: relative;
+  background-image: linear-gradient(100deg, #ffffff 0%, #ffffff 40%, #ffe08a 50%, #ffffff 60%, #ffffff 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: barridoVerde 6s ease-in-out infinite, resplandor 3.2s ease-in-out infinite;
+  text-shadow: none;
+}
+.photo-hero-title::before {
+  content: ''; position: absolute; left: 0; top: 0.2em; bottom: 0.2em; width: 4px; border-radius: 4px;
+  background: linear-gradient(180deg, #f4f08a, #f08a7e); box-shadow: 0 0 14px rgba(244,240,138,0.9);
+}
+.photo-hero-sub { padding-left: 1rem; border-left: 0; }
+
+/* ── Cita grande ──────────────────────────────────────────────── */
+.quote-text {
+  font-size: clamp(1.35rem, 3.4vw, 2.1rem); line-height: 1.45;
+  background-image: linear-gradient(100deg, #ffffff 0%, #ffffff 40%, #ffe9a8 50%, #ffffff 60%, #ffffff 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: barridoVerde 7s ease-in-out infinite, resplandor 3.6s ease-in-out infinite;
+  text-shadow: none; opacity: 1;
+}
+.quote-mark { color: #f4f08a; opacity: 1; font-size: 5.5rem; animation: comillaLuz 3s ease-in-out infinite; }
+.quote-author { position: relative; display: inline-flex; align-items: center; gap: 0.8rem; color: #ffe9a8; opacity: 1; text-shadow: 0 0 14px rgba(244,240,138,0.6); }
+.quote-author::before, .quote-author::after {
+  content: ''; width: 36px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f4f08a); box-shadow: 0 0 8px rgba(244,240,138,0.8);
+}
+.quote-author::after { background: linear-gradient(90deg, #f4f08a, transparent); }
+
+/* ── Frases de identidad y origen ─────────────────────────────── */
+.regional-title {
+  background-image: linear-gradient(100deg, #ffffff 0%, #ffffff 40%, #ffe9a8 50%, #ffffff 60%, #ffffff 100%);
+  background-size: 260% 100%; -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: barridoVerde 7s ease-in-out infinite; text-shadow: none;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.55));
+}
+.regional-title em { filter: drop-shadow(0 0 10px rgba(255,226,160,0.7)); }
+.regional-phrase-item p::before {
+  content: '“'; font-family: 'Playfair Display', serif; font-size: 2.2em; line-height: 0;
+  vertical-align: -0.38em; margin-right: 0.12em; color: #f4f08a;
+  text-shadow: 0 0 14px rgba(244,240,138,0.8); font-style: normal;
+}
+.regional-phrase-item { transition: transform .3s ease, background .3s ease, box-shadow .3s ease; }
+.regional-phrase-item:hover { box-shadow: 0 16px 36px rgba(0,0,0,0.35), 0 0 22px rgba(244,240,138,0.25); }
+.rstat-value {
+  background-image: linear-gradient(100deg, #14301a 0%, #14301a 45%, #d9625a 55%, #14301a 65%);
+  background-size: 260% 100%; -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: barridoVerde 6s ease-in-out infinite;
+}
+
+/* ── Cierre de pedidos ────────────────────────────────────────── */
+.cta-title {
+  font-size: clamp(1.8rem, 4.4vw, 2.8rem); filter: drop-shadow(0 0 14px rgba(255,226,160,0.6)) drop-shadow(0 3px 8px rgba(0,0,0,0.5));
+  text-shadow: none;
+}
+.cta-tag { animation: pulsoEtiqueta 3.4s ease-in-out infinite; }
+.cta-sub { text-shadow: 0 2px 12px rgba(0,0,0,0.6); opacity: 0.95; }
+
+/* ── Detalles en tarjetas y listas ────────────────────────────── */
+.nutri-phrase { transition: transform .25s ease, color .25s ease; }
+.nutri-phrase:hover { transform: translateX(5px); color: #14301a; }
+.feat-title, .tl-title, .info-block h4 {
+  background-image: linear-gradient(90deg, #f08a7e, #f4f08a);
+  background-size: 0% 3px; background-repeat: no-repeat; background-position: 0 100%;
+  padding-bottom: 3px; transition: background-size .45s ease;
+}
+.features-list li:hover .feat-title, .timeline-step:hover .tl-title, .info-block:hover h4 { background-size: 100% 3px; }
+.footer-logo {
+  background-image: linear-gradient(100deg, #fff4c8 0%, #ffffff 30%, #ffd98a 50%, #ffffff 70%, #fff4c8 100%);
+  background-size: 260% 100%; -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: brilloOro 6s linear infinite; filter: drop-shadow(0 0 10px rgba(255,226,160,0.5));
+}
+
+/* Los destellos se ralentizan (no se apagan) si el visitante pidió menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .hero h2 span, .regional-title em, .cta-title, .frase-oro, .footer-logo,
+  .section-title, .photo-hero-title, .quote-text, .regional-title, .rstat-value,
+  .hero h2 span::after, .hero h2::before, .quote-mark, .section-label, .cta-tag,
+  .hero-copy .hero-sub::before { animation-duration: 14s !important; }
+}
+/* Tablets y celulares: sin saltos de línea feos en títulos grandes */
+@media (max-width: 639px) {
+  .hero h2 { font-size: clamp(2rem, 9vw, 2.6rem); }
+  .quote-author { display: block; }
+  .quote-author::before, .quote-author::after { display: none; }
+  .hero h2::before { display: none; }
+}
