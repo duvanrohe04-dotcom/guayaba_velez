@@ -58,6 +58,29 @@
 }
 @media (hover: none) { .agro-btn:hover { transform: none; } }
 
+/* Banner "podrás degustar el producto" (después del empaque) */
+.agro-degusta {
+  display: flex; align-items: center; gap: 1rem; margin: 0 1.5rem 1.6rem;
+  padding: 1rem 1.2rem; border-radius: 22px; color: #14301a;
+  background: linear-gradient(120deg, #fff2a8 0%, #ffd9c9 100%);
+  border: 1px solid rgba(240,138,126,0.45);
+  box-shadow: 0 12px 28px rgba(217,98,90,0.22), inset 0 1px 0 rgba(255,255,255,0.7);
+  position: relative; overflow: hidden;
+}
+.agro-degusta::after {                        /* destello que cruza el banner */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.75) 50%, transparent 62%);
+  background-size: 250% 100%; background-position: 160% 0;
+  animation: destelloLogo 5s ease-in-out infinite;
+}
+.agro-degusta strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.12rem; line-height: 1.25; color: #7a2418; }
+.agro-degusta p { font-size: 0.88rem; line-height: 1.45; color: #4a3a2a; margin-top: 0.15rem; }
+.agro-degusta-ico.ph { flex-shrink: 0; width: 68px; height: 68px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 8px 18px rgba(217,98,90,0.4); }
+@media (max-width: 639px) {
+  .agro-degusta { margin: 0 1.1rem 1.3rem; padding: 0.9rem 1rem; }
+  .agro-degusta-ico.ph { width: 56px; height: 56px; }
+}
+
 /* Cómo llegar */
 .agro-ubicacion {
   display: flex; align-items: center; gap: 0.9rem; text-align: left; width: 100%; max-width: 440px;
