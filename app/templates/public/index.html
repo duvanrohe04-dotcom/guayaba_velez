@@ -354,9 +354,8 @@
       <ul class="features-list">
 
         {% set bloques_extra = [
-          ('historia', 'casa', 'Nuestra Historia', None),
-          ('fincas', 'ladera', 'Nuestras Fincas', None),
-          ('manejo_fitosanitario', 'hoja', 'Manejo Agronómico', 'Panela de Baya'),
+          {# Historia y fincas ya se muestran completas en las tarjetas con foto de más abajo #}
+          ('manejo_fitosanitario', 'hoja', 'Manejo Agronómico', None),
           ('proceso_productivo', 'arbol', 'Proceso Productivo', None),
           ('cosecha_transformacion', 'entera', 'Cosecha & Transformación', 'Zona D.O.')
         ] %}
@@ -368,7 +367,7 @@
             <span class="feat-icon ph ph-{{ icono }}" role="img" aria-hidden="true"></span>
             <div class="feat-body">
               <p class="feat-title">{{ bloque.titulo }}</p>
-              <p class="feat-desc">{{ bloque.texto | truncate(120) }}</p>
+              <p class="feat-desc">{{ bloque.texto }}</p>
             </div>
             {% if badge %}<span class="feat-badge {{ 'dop' if 'D.O.' in badge else '' }}">{{ badge }}</span>{% endif %}
           </li>
@@ -393,7 +392,7 @@
           <span class="feat-icon ph ph-mitad" role="img" aria-hidden="true"></span>
           <div class="feat-body">
             <p class="feat-title">Semillero Tradicional de Bajo Impacto</p>
-            <p class="feat-desc">Preservación activa de la variedad criolla de Guayaba Manzana, base del bocadillo veleño con DOP.</p>
+            <p class="feat-desc">Trabajamos con guayaba regional tecnificada: de los árboles que crecían en nuestra zona sacamos la semilla y la tecnificamos, base del bocadillo veleño.</p>
           </div>
         </li>
       </ul>
