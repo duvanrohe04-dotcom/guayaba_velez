@@ -7,4 +7,5 @@
     linear-gradient(160deg, rgba(18,38,15,0.88), rgba(12,30,10,0.95)),
     url("../img/fondo-cultivo.jpg") center / cover no-repeat;
 }
+.login-logo-img { width: auto; max-width: 150px; height: 92px; border-radius: 18px; object-fit: contain; border: none; background: #fff; box-shadow: 0 8px 24px rgba(20,48,26,0.25); }
 .footer-logo-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.7rem; border: 3px solid rgba(255,255,255,0.35); background: #fff; }

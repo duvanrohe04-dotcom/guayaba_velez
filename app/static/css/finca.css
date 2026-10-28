@@ -116,6 +116,23 @@
   .red-btn { flex: 1 1 100%; justify-content: center; }
 }
 
+/* ══ COMPATIBILIDAD: Safari/iPhone, Android y pantallas táctiles ══ */
+/* Vidrio esmerilado: Safari necesita el prefijo -webkit- */
+.hero-label, .hero-chips li, .ticker-item, .regional-phrase-item, .photo-hero-badge,
+.nav-links, .hero-label, .float-tag {
+  -webkit-backdrop-filter: blur(8px);
+}
+/* iPhone: 100vh incluye la barra del navegador; dvh es la altura real visible */
+.login-wrap { min-height: 100vh; min-height: 100dvh; }
+/* En pantallas táctiles :hover queda "pegado" tras tocar: sin saltos ni zooms al tocar */
+@media (hover: none) {
+  .quality-card:hover, .timeline-step:hover, .features-list li:hover, .info-block:hover,
+  .nutri-card:hover, .regional-phrase-item:hover, .g-tile:hover .g-img, .btn-primary:hover,
+  .btn-ghost:hover, .btn-cta:hover, .nav-links .btn-contacto:hover, .red:hover, .brand:hover .brand-logo,
+  .wa-float:hover { transform: none; }
+  .g-tile:hover .g-img { transform: none; }
+}
+
 /* ══ CELULAR: nada se sale de la pantalla ══ */
 html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 639px) {
@@ -236,7 +253,7 @@ html, body { max-width: 100%; overflow-x: clip; }
   animation: destello2 3.6s ease-in-out infinite, brilloTexto 2.8s ease-in-out infinite;
 }
 .brand-name span {
-  display: block; margin-top: 0.35rem; font-size: 0.74rem; letter-spacing: 0.24em;
+  display: block; margin-top: 0.35rem; font-size: 0.74rem; letter-spacing: 0.15em; white-space: nowrap;
   color: #ffd9cf; text-shadow: 0 0 14px rgba(240,138,126,0.85), 0 1px 4px rgba(0,0,0,0.6);
 }
 /* Rayo de luz bajo el nombre */
@@ -355,7 +372,11 @@ html, body { max-width: 100%; overflow-x: clip; }
 .site-header.compacta .brand-logo img.logo-placeholder { height: 52px !important; width: 52px !important; border-radius: 50% !important; }
 @media (min-width: 640px) and (max-width: 1050px) {
   .brand-logo { width: auto !important; height: auto !important; }
-  .brand-logo img { height: 84px !important; max-width: 150px !important; }
+  .brand-logo img { height: 72px !important; max-width: 120px !important; }
+  .brand-name span { display: none; }                 /* cabecera baja: no 3 líneas de texto */
+  .brand-name h1 { font-size: 1.25rem; }
+  .nav-links a:not(.btn-contacto) { padding: 0.35rem 0.45rem; font-size: 0.78rem; }
+  .nav-links .btn-contacto { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
 }
 @media (max-width: 639px) {
   .brand-logo { width: auto !important; height: auto !important; border-radius: 10px; }

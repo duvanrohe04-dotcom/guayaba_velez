@@ -84,6 +84,7 @@
   color: rgba(255,255,255,0.92);
 }
 @media (min-width: 900px) { .topbar-info { display: flex; } }
+@media (max-width: 899px) { .topbar { display: none; } }   /* sin contenido en pantallas chicas: no deja franja vacía */
 
 .site-header {
   background:
