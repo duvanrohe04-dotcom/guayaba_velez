@@ -510,20 +510,17 @@
   <!-- ── CTA ──────────────────────────────────────────────── -->
   <section class="cta-section">
     <div class="cta-inner">
-      <span class="cta-tag">🛒 Compra 2025 Disponible</span>
-      <h2 class="cta-title">Asegura tu Lote de Guayaba Veleña</h2>
+      <span class="cta-tag">🛒 Pedidos abiertos</span>
+      <h2 class="cta-title">Pide tu conserva y bocadillo veleño</h2>
       <p class="cta-sub">
-        Cosechamos durante todo el año. Reserva con anticipación
+        Haz tu pedido de conserva natural de guayaba y de bocadillo veleño
         directamente con nosotros, los productores de la vereda Guayabal.
       </p>
-      {% if empresa.whatsapp_link %}
-        <a href="{{ wa_url }}" class="btn-cta" target="_blank" rel="noopener">
-          💬 Solicitar Lote / Contactar Productores
-        </a>
-      {% else %}
-        <span class="btn-cta" style="opacity:0.7; cursor:default;">💬 Contactar Productores</span>
-      {% endif %}
-      <p class="cta-note">Producción de Origen Agrícola Natural (PDN)</p>
+      <a href="{{ wa_base ~ '?text=' ~ ('Hola, quiero hacer un pedido de conserva de guayaba y bocadillo veleño. ¿Me pueden dar precio y disponibilidad?' | urlencode) }}"
+         class="btn-cta" target="_blank" rel="noopener">
+        💬 Pedir conserva y bocadillo
+      </a>
+      <p class="cta-note">Hecho con guayaba de la vereda Guayabal · Vélez, Santander</p>
     </div>
   </section>
 
