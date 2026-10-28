@@ -130,7 +130,7 @@
   transition: transform .8s ease;
 }
 .features-list li:hover .feat-figura img { transform: scale(1.03); }
-.feat-figura figcaption { padding: 0.4rem 0.7rem; font-size: 0.72rem; font-weight: 600; line-height: 1.3; color: #4a5e41; }
+.feat-figura figcaption { padding: 0.4rem 0.7rem; font-size: 0.72rem; font-weight: 600; line-height: 1.3; color: #4a5e41; min-height: 2.9em; box-sizing: content-box; }
 @media (hover: none) { .features-list li:hover .feat-figura img { transform: none; } }
 @media (max-width: 639px) { .feat-figura { max-width: 100%; } .feat-figura img { height: 170px; } }
 

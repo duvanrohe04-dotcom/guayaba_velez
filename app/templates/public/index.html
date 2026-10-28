@@ -491,14 +491,28 @@
           ('cosecha_transformacion', 'entera', 'Cosecha & Transformación', 'Zona D.O.')
         ] %}
 
+        {# Foto, pie y encuadre de cada tarjeta: todas llevan foto del mismo tamaño #}
+        {% set fotos_extra = {
+          'manejo_fitosanitario': ('img/finca-hojas.jpg', 'Hojas sanas de guayabo en el cultivo', 'Manejo del cultivo', '50% 72%'),
+          'proceso_productivo': ('img/finca-cultivo.jpg', 'Surcos del cultivo de guayaba en la vereda Guayabal', 'Surcos del cultivo en la vereda Guayabal', '50% 62%'),
+          'cosecha_transformacion': ('img/finca-tradicion.jpg', 'Canasta con guayabas recién cosechadas', 'Guayabas recién cosechadas', '60% 84%')
+        } %}
+
         {% for clave, icono, fallback_titulo, badge in bloques_extra %}
           {% set bloque = secciones.get(clave) %}
           {% if bloque %}
+          {% set foto = fotos_extra.get(clave) %}
           <li>
             <span class="feat-icon ph ph-{{ icono }}" role="img" aria-hidden="true"></span>
             <div class="feat-body">
               <p class="feat-title">{{ bloque.titulo }}</p>
               <p class="feat-desc">{{ bloque.texto }}</p>
+              {% if foto %}
+              <figure class="feat-figura">
+                <img src="{{ url_for('static', filename=foto[0]) }}" alt="{{ foto[1] }}" loading="lazy" style="object-position: {{ foto[3] }}">
+                <figcaption>{{ foto[2] }}</figcaption>
+              </figure>
+              {% endif %}
             </div>
             {% if badge %}<span class="feat-badge {{ 'dop' if 'D.O.' in badge else '' }}">{{ badge }}</span>{% endif %}
           </li>
