@@ -23,7 +23,7 @@
   font-size: clamp(1.9rem, 4.6vw, 3rem); margin-bottom: 1rem;
   filter: drop-shadow(0 0 14px rgba(255,226,160,0.55)) drop-shadow(0 3px 8px rgba(0,0,0,0.55));
 }
-.cj-lead { font-size: clamp(0.98rem, 1.8vw, 1.12rem); line-height: 1.7; max-width: 560px; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+.cj-lead { font-size: clamp(0.98rem, 1.8vw, 1.12rem); line-height: 1.7; max-width: 600px; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
 
 .cj-zonas-titulo { margin: 1.4rem 0 0.6rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ffe9a8; }
 .cj-zonas { list-style: none; display: flex; flex-wrap: wrap; gap: 0.55rem; }
