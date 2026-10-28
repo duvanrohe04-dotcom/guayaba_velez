@@ -19,7 +19,7 @@ CONTENIDO_BASE = [
             'Cultivamos la guayaba regional del municipio de Vélez en la vereda '
             'Guayabal, a una altura aproximada de 1810 msnm, en la zona de '
             'denominación de origen del bocadillo veleño, un dulce reconocido '
-            'en toda Colombia y en Europa.'
+            'en Colombia y en el mundo.'
         ),
         orden=1,
     ),
@@ -141,7 +141,15 @@ def run_seed():
             'elaborado con esta guayaba, cuenta con Denominación de Origen '
             'Protegida y es reconocido en toda Colombia y en Europa.'
         )
-        if historia is not None and historia.texto == historia_vieja:
+        # Versión intermedia (ya corregida la denominación, pero con "toda Colombia y
+        # en Europa"): también se actualiza a "Colombia y en el mundo".
+        historia_intermedia = (
+            'Cultivamos la guayaba regional del municipio de Vélez en la vereda '
+            'Guayabal, a una altura aproximada de 1810 msnm, en la zona de '
+            'denominación de origen del bocadillo veleño, un dulce reconocido '
+            'en toda Colombia y en Europa.'
+        )
+        if historia is not None and historia.texto in (historia_vieja, historia_intermedia):
             historia.texto = [d for d in CONTENIDO_BASE if d['seccion'] == 'historia'][0]['texto']
             print('Texto de "Nuestra historia" corregido (zona de denominación de origen).')
 
