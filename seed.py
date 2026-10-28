@@ -82,8 +82,8 @@ PRODUCTOS_BASE = [
     dict(
         nombre='Conserva natural de guayaba',
         descripcion=('Un producto natural y tradicional, elaborado con guayaba de la '
-                     'vereda Guayabal y empacado en hoja de plátano.'),
-        etiquetas='🌿 Natural, 🏡 Tradicional, 🍃 Empacada en hoja de plátano',
+                     'vereda Guayabal y empacado en calceta de plátano.'),
+        etiquetas='🌿 Natural, 🏡 Tradicional, 🍃 Empacada en calceta de plátano',
         cinta='Producto tradicional',
         imagen='img/productos/conserva-hoja.jpg',
         orden=1,
@@ -128,6 +128,18 @@ def run_seed():
             if existente is None:
                 db.session.add(Contenido(**datos))
                 print(f"Sección creada: {datos['seccion']}")
+
+        # Corrección de redacción: "hoja de plátano" -> "calceta de plátano" en el
+        # producto inicial ya guardado. Solo se cambia si el texto sigue siendo el
+        # original; si el administrador lo editó, no se toca.
+        for prod in Producto.query.filter_by(nombre='Conserva natural de guayaba').all():
+            if prod.descripcion == ('Un producto natural y tradicional, elaborado con guayaba de la '
+                                    'vereda Guayabal y empacado en hoja de plátano.'):
+                prod.descripcion = prod.descripcion.replace('hoja de plátano', 'calceta de plátano')
+                print('Descripción del producto corregida (calceta de plátano).')
+            if prod.etiquetas == '🌿 Natural, 🏡 Tradicional, 🍃 Empacada en hoja de plátano':
+                prod.etiquetas = prod.etiquetas.replace('hoja de plátano', 'calceta de plátano')
+                print('Etiqueta del producto corregida (calceta de plátano).')
 
         # Productos iniciales: se crean UNA sola vez. La marca '_productos_semilla'
         # evita que, si el administrador los borra o los cambia, un deploy los

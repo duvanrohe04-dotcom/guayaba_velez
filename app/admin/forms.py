@@ -29,7 +29,7 @@ class ProductoForm(FlaskForm):
     etiquetas = StringField(
         'Etiquetas (separadas por coma)',
         validators=[Optional(), Length(max=300)],
-        render_kw={'placeholder': 'Natural, Tradicional, Empacada en hoja de plátano'},
+        render_kw={'placeholder': 'Natural, Tradicional, Empacada en calceta de plátano'},
     )
     cinta = StringField(
         'Rótulo sobre la foto (opcional)',
