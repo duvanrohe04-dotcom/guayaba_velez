@@ -58,6 +58,18 @@
 }
 @media (hover: none) { .agro-btn:hover { transform: none; } }
 
+/* Cómo llegar */
+.agro-ubicacion {
+  display: flex; align-items: center; gap: 0.9rem; text-align: left; width: 100%; max-width: 440px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 18px; padding: 0.9rem 1.1rem; margin: 0 0 1.5rem;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.agro-pin { font-size: 1.8rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); flex-shrink: 0; }
+.agro-ubicacion strong { display: block; color: #fff6c8; font-size: 0.95rem; margin-bottom: 0.1rem; }
+.agro-ubicacion p { font-size: 0.92rem; line-height: 1.5; opacity: 0.97; }
+.agro-ubicacion b { color: #ffe9a8; }
+
 /* Tarjeta de reserva: un solo botón de WhatsApp */
 .agro-reserva { display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center; min-height: 100%; padding: 2.4rem 1.8rem; }
 .agro-reserva .agro-form-titulo { font-size: clamp(1.6rem, 3.4vw, 2.1rem); }

@@ -28,9 +28,10 @@ CONTENIDO_BASE = [
         titulo='Nuestras fincas',
         texto=(
             'Los cultivos se desarrollan en la finca Buena Vista y la finca El '
-            'Placer, ubicadas en la vereda Guayabal. Los árboles actuales tienen '
-            'una edad promedio de 7 años, con una productividad esperada de 40 '
-            'años realizando manejos adecuados.'
+            'Placer, ubicadas en la vereda Guayabal, a 7 kilómetros del casco '
+            'urbano de Vélez, Santander, vía Vélez–Chipatá. Los árboles actuales '
+            'tienen una edad promedio de 7 años, con una productividad esperada '
+            'de 40 años realizando manejos adecuados.'
         ),
         orden=2,
     ),
@@ -143,6 +144,19 @@ def run_seed():
         if historia is not None and historia.texto == historia_vieja:
             historia.texto = [d for d in CONTENIDO_BASE if d['seccion'] == 'historia'][0]['texto']
             print('Texto de "Nuestra historia" corregido (zona de denominación de origen).')
+
+        # "Nuestras fincas": se añade la ubicación (7 km del casco urbano, vía
+        # Vélez–Chipatá). Solo si el texto sigue siendo el original del seed.
+        fincas = Contenido.get_por_seccion('fincas')
+        fincas_vieja = (
+            'Los cultivos se desarrollan en la finca Buena Vista y la finca El '
+            'Placer, ubicadas en la vereda Guayabal. Los árboles actuales tienen '
+            'una edad promedio de 7 años, con una productividad esperada de 40 '
+            'años realizando manejos adecuados.'
+        )
+        if fincas is not None and fincas.texto == fincas_vieja:
+            fincas.texto = [d for d in CONTENIDO_BASE if d['seccion'] == 'fincas'][0]['texto']
+            print('Texto de "Nuestras fincas" actualizado con la ubicación.')
 
         # Corrección de redacción: "hoja de plátano" -> "calceta de plátano" en el
         # producto inicial ya guardado. Solo se cambia si el texto sigue siendo el
