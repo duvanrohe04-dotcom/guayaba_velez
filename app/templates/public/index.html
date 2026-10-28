@@ -21,6 +21,7 @@
 {# WhatsApp: siempre disponible. Sin número en el panel abre WhatsApp para elegir contacto. #}
 {% set wa_msg = 'Hola 🍈, vi su página de Guayaba Veleña (Vélez, Santander) y me interesa conocer precios, disponibilidad y cómo hacer un pedido. ¿Me pueden ayudar?' %}
 {% set wa_url = (empresa.whatsapp_link or 'https://wa.me/') ~ '?text=' ~ (wa_msg | urlencode) %}
+{% import 'partials/redes.html' as redes with context %}
 <body>
   <a href="#nutricion" class="skip-link">Saltar al contenido</a>
 
@@ -31,18 +32,7 @@
       <span><i class="tb-thumb ph ph-arbol" aria-hidden="true"></i>100% natural</span>
     </div>
     <div class="topbar-icons">
-      {% if empresa.whatsapp_link %}
-      <a href="{{ empresa.whatsapp_link }}" target="_blank" rel="noopener" title="WhatsApp">💬</a>
-      {% endif %}
-      {% if empresa.instagram %}
-      <a href="{{ empresa.instagram }}" target="_blank" rel="noopener" title="Instagram">📸</a>
-      {% endif %}
-      {% if empresa.facebook %}
-      <a href="{{ empresa.facebook }}" target="_blank" rel="noopener" title="Facebook">👍</a>
-      {% endif %}
-      {% if empresa.tiktok %}
-        <a href="{{ empresa.tiktok }}" target="_blank" rel="noopener" title="TikTok">🎵</a>
-      {% endif %}
+      {{ redes.circulos() }}
     </div>
   </div>
 
@@ -457,15 +447,29 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <!-- ── SÍGUENOS ───────────────────────────────────────── -->
+  <section class="siguenos-section" id="redes">
+    <div class="section-wrap section-center">
+      <span class="section-label">📲 Redes sociales</span>
+      <h2 class="section-title">Síguenos y conoce nuestra cosecha</h2>
+      <p class="section-sub">Fotos del cultivo, recetas y novedades de la temporada.</p>
+      <div class="red-btns">
+        {{ redes.botones() }}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BARRA LATERAL DE REDES (escritorio) ───────────── -->
+  <aside class="redes-lateral" aria-label="Redes sociales">
+    {{ redes.circulos() }}
+  </aside>
+
+  <!-- ── FOOTER────────────────────────────────────────────── -->
   <footer class="site-footer">
     <img src="{{ marca_logo }}" alt="Logo {{ empresa.nombre }}" class="footer-logo-img">
     <p class="footer-logo">{{ empresa.nombre }}</p>
-    <div class="footer-links">
-      {% if empresa.whatsapp_link %}<a href="{{ empresa.whatsapp_link }}" target="_blank">WhatsApp</a>{% endif %}
-      {% if empresa.facebook %}<a href="{{ empresa.facebook }}" target="_blank">Facebook</a>{% endif %}
-      {% if empresa.instagram %}<a href="{{ empresa.instagram }}" target="_blank">Instagram</a>{% endif %}
-      {% if empresa.tiktok %}<a href="{{ empresa.tiktok }}" target="_blank">TikTok</a>{% endif %}
+    <div class="footer-redes">
+      {{ redes.circulos() }}
     </div>
     <p>&copy; {{ empresa.nombre }} — Denominación de Origen · Vélez, Santander, Colombia.</p>
   </footer>

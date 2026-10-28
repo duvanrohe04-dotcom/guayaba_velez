@@ -53,6 +53,69 @@
   .ticker-track { animation-duration: 70s !important; }   /* más suave, pero no se detiene */
 }
 
+/* ══ REDES SOCIALES: círculos, botones grandes y barra lateral ══ */
+.red {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  color: #fff; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.35);
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.red svg { width: 18px; height: 18px; }
+.red:hover { transform: translateY(-3px) scale(1.08); border-color: transparent; }
+.red-whatsapp:hover  { background: #25d366; box-shadow: 0 8px 20px rgba(37,211,102,0.55); }
+.red-facebook:hover  { background: #1877f2; box-shadow: 0 8px 20px rgba(24,119,242,0.55); }
+.red-instagram:hover { background: linear-gradient(45deg,#f9ce34,#ee2a7b 55%,#6228d7); box-shadow: 0 8px 20px rgba(238,42,123,0.55); }
+.red-tiktok:hover    { background: #000; box-shadow: 0 8px 20px rgba(0,0,0,0.55), -2px -2px 0 #25f4ee, 2px 2px 0 #fe2c55; }
+.topbar-icons { display: flex; gap: 0.5rem; align-items: center; margin-left: auto; }
+.topbar-icons .red { width: 32px; height: 32px; }
+.topbar-icons .red svg { width: 16px; height: 16px; }
+.topbar-info { margin-right: 0; }
+
+/* Pie de página */
+.footer-redes { display: flex; justify-content: center; gap: 0.8rem; margin: 1rem 0 1.2rem; }
+.footer-redes .red { width: 44px; height: 44px; }
+.footer-redes .red svg { width: 22px; height: 22px; }
+
+/* Sección "Síguenos" */
+.siguenos-section {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(240,138,126,0.16), transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(244,240,138,0.20), transparent 45%),
+    #fff8f1;
+}
+.red-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
+.red-btn {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 0.85rem 1.6rem 0.85rem 1.2rem; border-radius: 999px;
+  color: #fff; font-weight: 700; font-size: 0.98rem;
+  box-shadow: 0 10px 26px rgba(20,48,26,0.22);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.red-btn svg { width: 26px; height: 26px; }
+.red-btn:hover { transform: translateY(-5px); box-shadow: 0 18px 36px rgba(20,48,26,0.32); filter: brightness(1.06); }
+.red-btn.red-whatsapp  { background: linear-gradient(135deg, #25d366, #128c4a); }
+.red-btn.red-facebook  { background: linear-gradient(135deg, #2f8bff, #1456c8); }
+.red-btn.red-instagram { background: linear-gradient(45deg, #f9a825, #ee2a7b 55%, #6228d7); }
+.red-btn.red-tiktok    { background: linear-gradient(135deg, #1b1b1b, #000); box-shadow: 0 10px 26px rgba(0,0,0,0.3), -3px -3px 0 rgba(37,244,238,0.55), 3px 3px 0 rgba(254,44,85,0.55); }
+
+/* Barra lateral fija (solo escritorio): acceso directo en todo momento */
+.redes-lateral { display: none; }
+@media (min-width: 1100px) {
+  .redes-lateral {
+    position: fixed; left: 14px; top: 50%; transform: translateY(-50%); z-index: 150;
+    display: flex; flex-direction: column; gap: 0.6rem; padding: 0.6rem 0.45rem;
+    background: rgba(14,36,14,0.72); border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 999px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+  .redes-lateral .red { width: 40px; height: 40px; }
+  .redes-lateral .red svg { width: 20px; height: 20px; }
+}
+@media (max-width: 639px) {
+  .topbar-icons { margin: 0 auto; }
+  .red-btn { flex: 1 1 100%; justify-content: center; }
+}
+
 /* ══ CELULAR: nada se sale de la pantalla ══ */
 html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 639px) {
