@@ -149,6 +149,38 @@
   animation: brilloOro 6s linear infinite; filter: drop-shadow(0 0 10px rgba(255,226,160,0.5));
 }
 
+/* ══ RENDIMIENTO Y DESLIZAMIENTO SUAVE (corrige el tirón al hacer scroll) ══ */
+/* 1) Animaciones fuera de pantalla en pausa (lo marca main.js) */
+.pausa, .pausa::before, .pausa::after { animation-play-state: paused !important; }
+
+/* 2) Resplandores estáticos: animar `filter` obliga a repintar cada cuadro y
+      en el celular hace que el scroll se trabe. El destello (barrido) se mantiene. */
+.brand-logo {
+  animation: none !important;
+  filter: drop-shadow(0 0 4px rgba(255,240,190,0.95)) drop-shadow(0 0 14px rgba(255,214,150,0.65)) !important;
+}
+.brand-name h1 {
+  animation: destello2 3.6s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 12px rgba(255,236,170,0.70)) drop-shadow(0 3px 8px rgba(0,0,0,0.6)) !important;
+}
+.photo-hero-title, .quote-text { animation: barridoVerde 7s ease-in-out infinite !important; filter: drop-shadow(0 0 10px rgba(255,236,170,0.55)) drop-shadow(0 3px 8px rgba(0,0,0,0.5)); }
+
+/* 3) Las 14 cápsulas de la cinta ya no desenfocan el fondo (costoso mientras se mueven) */
+.ticker-item { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: rgba(255,255,255,0.14); }
+
+/* 4) Cabecera de tamaño fijo: logo un poco más chico en escritorio para que no estorbe */
+@media (min-width: 1051px) {
+  .brand-logo img { height: 84px !important; max-width: 160px !important; }
+}
+
+/* 5) Al tocar un enlace del menú, el título de la sección no queda tapado por la cabecera */
+section[id] { scroll-margin-top: 110px; }
+@media (max-width: 639px) { section[id] { scroll-margin-top: 84px; } }
+
+/* 6) El celular no agranda el texto por su cuenta al girar la pantalla */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-tap-highlight-color: transparent; }
+
 /* Los destellos se ralentizan (no se apagan) si el visitante pidió menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   .hero h2 span, .regional-title em, .cta-title, .frase-oro, .footer-logo,

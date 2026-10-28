@@ -1,18 +1,24 @@
 ﻿(function () {
   document.documentElement.classList.add('js');
 
-  // Cabecera compacta al bajar: el logo grande solo se ve arriba del todo
-  var header = document.querySelector('.site-header');
-  if (header) {
-    var ticking = false;
-    var actualizar = function () {
-      header.classList.toggle('compacta', window.scrollY > 60);
-      ticking = false;
-    };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(actualizar); }
-    }, { passive: true });
-    actualizar();
+  // La cabecera ya NO cambia de tamaño al deslizar: antes se encogía a mitad
+  // del scroll, el contenido "saltaba" bajo el dedo y el navegador corregía la
+  // posición (parpadeo). Ahora mide siempre lo mismo.
+
+  // Ahorro de batería/GPU: las animaciones decorativas (destellos de títulos,
+  // resplandores) solo corren mientras el elemento está en pantalla.
+  var animados = document.querySelectorAll(
+    '.section-title, .section-label, .photo-hero-title, .quote-text, .quote-mark, ' +
+    '.regional-title, .rstat-value, .cta-title, .cta-tag, .footer-logo, ' +
+    '.hero h2 span, .hero-copy .hero-sub'
+  );
+  if ('IntersectionObserver' in window) {
+    var pausador = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.classList.toggle('pausa', !e.isIntersecting);
+      });
+    }, { rootMargin: '80px 0px' });
+    animados.forEach(function (el) { pausador.observe(el); });
   }
   var items = document.querySelectorAll(
     '.nutri-card, .quality-card, .timeline-step, .features-list li, ' +
