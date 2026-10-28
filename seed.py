@@ -82,13 +82,17 @@ def run_seed():
     with app.app_context():
         db.create_all()
 
-        if Usuario.query.filter_by(username=app.config['ADMIN_USERNAME']).first() is None:
+        # Solo se crea el admin inicial si la tabla está VACÍA. Antes se buscaba
+        # por nombre: si el cliente cambiaba su usuario desde el panel, cada
+        # deploy volvía a crear un "admin" nuevo con la contraseña de las
+        # variables de entorno (una cuenta de más y con clave conocida).
+        if Usuario.query.count() == 0:
             admin = Usuario(username=app.config['ADMIN_USERNAME'])
             admin.set_password(app.config['ADMIN_PASSWORD'])
             db.session.add(admin)
             print(f"Usuario admin creado: {app.config['ADMIN_USERNAME']}")
         else:
-            print('El usuario admin ya existe, se omite.')
+            print('Ya existen usuarios; no se crea ni se modifica ninguno.')
 
         Empresa.get_instance()  # crea la fila id=1 si no existe
 

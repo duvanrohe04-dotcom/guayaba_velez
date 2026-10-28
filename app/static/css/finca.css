@@ -314,6 +314,59 @@ html, body { max-width: 100%; overflow-x: clip; }
   .brand-name::before, .brand-name h1::after { opacity: 0.8; }
 }
 
+/* ══ LOGO v3: sin placa ni fondo. El brillo sigue la forma del propio logo ══
+   El espacio se adapta al logo (ancho automático), y el resplandor sale de
+   su contorno, no de una caja detrás. */
+.brand-logo {
+  width: auto !important; height: auto !important;
+  border-radius: 14px; overflow: hidden; background: none !important;
+  display: inline-block; line-height: 0; position: relative;
+  box-shadow: none !important;
+  animation: contornoLogo 3.2s ease-in-out infinite !important;
+  transition: transform .3s ease;
+}
+.brand-logo::before { display: none !important; }
+.brand-logo::after {                               /* destello de luz que cruza el logo */
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.65) 50%, transparent 62%);
+  background-size: 250% 100%; background-position: 160% 0;
+  box-shadow: none !important; border-radius: inherit;
+  animation: destelloLogo 4.5s ease-in-out infinite;
+}
+.brand-logo img {
+  display: block; position: relative; z-index: 2;
+  width: auto !important; height: 100px !important; max-width: 190px !important;
+  padding: 0 !important; margin: 0; border: none !important; outline: none !important;
+  border-radius: 0 !important; background: transparent !important; box-shadow: none !important;
+  object-fit: contain !important;
+}
+.brand-logo img.logo-placeholder { height: 78px !important; width: 78px !important; border-radius: 50% !important; object-fit: cover !important; }
+.brand-logo:has(.logo-placeholder) { border-radius: 50%; }
+.brand:hover .brand-logo { transform: scale(1.05); }
+
+@keyframes contornoLogo {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(255,236,170,0.85)) drop-shadow(0 0 10px rgba(240,138,126,0.45)); }
+  50%      { filter: drop-shadow(0 0 5px rgba(255,248,200,1)) drop-shadow(0 0 20px rgba(255,214,150,0.85)); }
+}
+@keyframes destelloLogo { 0%, 55% { background-position: 160% 0; } 90%, 100% { background-position: -60% 0; } }
+
+.site-header.compacta .brand-logo { width: auto !important; height: auto !important; border-radius: 10px; }
+.site-header.compacta .brand-logo img { height: 56px !important; max-width: 110px !important; border-radius: 0 !important; }
+.site-header.compacta .brand-logo img.logo-placeholder { height: 52px !important; width: 52px !important; border-radius: 50% !important; }
+@media (min-width: 640px) and (max-width: 1050px) {
+  .brand-logo { width: auto !important; height: auto !important; }
+  .brand-logo img { height: 84px !important; max-width: 150px !important; }
+}
+@media (max-width: 639px) {
+  .brand-logo { width: auto !important; height: auto !important; border-radius: 10px; }
+  .brand-logo img { height: 64px !important; max-width: 100px !important; }
+  .site-header.compacta .brand-logo img { height: 46px !important; max-width: 80px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo, .brand-logo::after { animation: none !important; }
+  .brand-logo { filter: drop-shadow(0 0 6px rgba(255,236,170,0.9)); }
+}
+
 /* Fondos con velo: encuadres para la franja del cultivo */
 .quote-section { background-position: center, center 60% !important; }
 .regional-banner { background-position: center, center 60% !important; }
