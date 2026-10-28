@@ -48,7 +48,8 @@
 
   <!-- ── HEADER ──────────────────────────────────────────── -->
   <header class="site-header">
-    <div class="brand">
+    <a class="brand" href="#" aria-label="{{ empresa.nombre }} — inicio">
+      <span class="brand-logo">
       {% if empresa.logo_filename %}
         <img src="{{ url_for('static', filename='uploads/' ~ empresa.logo_filename) }}"
              alt="Logo {{ empresa.nombre }}">
@@ -56,11 +57,12 @@
         <img src="{{ url_for('static', filename='img/logo-placeholder.svg') }}"
              alt="Logo provisional de {{ empresa.nombre }}" class="logo-placeholder">
       {% endif %}
+      </span>
       <div class="brand-name">
         <h1>{{ empresa.nombre }}</h1>
         <span>Vélez · Santander · Colombia</span>
       </div>
-    </div>
+    </a>
     <nav class="nav-links">
       <a href="#nutricion">Nutrición</a>
       <a href="#calidad">Calidad</a>
