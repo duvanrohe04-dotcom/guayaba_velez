@@ -21,7 +21,7 @@
     animados.forEach(function (el) { pausador.observe(el); });
   }
   var items = document.querySelectorAll(
-    '.nutri-card, .quality-card, .timeline-step, .features-list li, ' +
+    '.producto-card, .nutri-card, .quality-card, .timeline-step, .features-list li, ' +
     '.regional-phrase-item, .info-block, .rstat, .quote-inner, .cta-inner'
   );
   items.forEach(function (el) { el.classList.add('reveal'); });

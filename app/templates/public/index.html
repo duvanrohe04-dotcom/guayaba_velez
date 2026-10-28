@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/fotos.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/finca.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/frases.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/productos.css') }}">
 </head>
 {# WhatsApp: siempre disponible. Sin número en el panel abre WhatsApp para elegir contacto. #}
 {% set wa_msg = 'Hola 🍈, vi su página de Guayaba Veleña (Vélez, Santander) y me interesa conocer precios, disponibilidad y cómo hacer un pedido. ¿Me pueden ayudar?' %}
@@ -52,6 +53,7 @@
       </div>
     </a>
     <nav class="nav-links">
+      <a href="#productos">Productos</a>
       <a href="#nutricion">Nutrición</a>
       <a href="#calidad">Calidad</a>
       <a href="#proceso">Proceso</a>
@@ -129,6 +131,58 @@
   </div>
 
   <!-- ── NUTRICIÓN & FRASES ───────────────────────────── -->
+  <!-- ── NUESTROS PRODUCTOS ─────────────────────────────── -->
+  {% set wa_base = empresa.whatsapp_link or 'https://wa.me/' %}
+  <section class="productos-section" id="productos">
+    <div class="section-wrap section-center">
+      <span class="section-label">🍯 Nuestros productos</span>
+      <h2 class="section-title">Productos del Guayabal</h2>
+      <p class="section-sub">Estamos iniciando y arrancamos con dos productos hechos con guayaba de nuestra vereda. Haz tu pedido por WhatsApp.</p>
+
+      <div class="productos-grid">
+        <article class="producto-card">
+          <div class="producto-foto">
+            <img src="{{ url_for('static', filename='img/productos/conserva-hoja.jpg') }}"
+                 alt="Conserva de guayaba empacada en hoja de plátano" loading="lazy">
+            <span class="producto-cinta">Producto tradicional</span>
+          </div>
+          <div class="producto-cuerpo">
+            <h3 class="producto-titulo">Conserva natural de guayaba</h3>
+            <p class="producto-desc">Un producto natural y tradicional, elaborado con guayaba de la vereda Guayabal y empacado en hoja de plátano.</p>
+            <ul class="producto-tags">
+              <li>🌿 Natural</li><li>🏡 Tradicional</li><li>🍃 Empacada en hoja de plátano</li>
+            </ul>
+            <a class="producto-btn" target="_blank" rel="noopener"
+               href="{{ wa_base ~ '?text=' ~ ('Hola, quiero hacer un pedido de Conserva natural de guayaba (empacada en hoja de plátano). ¿Me pueden dar precio y disponibilidad?' | urlencode) }}">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.100c-.2-.1-1.500-.7-1.700-.8s-.4-.1-.6.100-.7.8-.8 1-.3.2-.6.1a6.700 6.700 0 0 1-3.300-2.900c-.3-.4.300-.4.800-1.400.1-.2 0-.3 0-.5s-.6-1.400-.8-1.900-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.200 5.200 0 0 0 1.100 2.800 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.2-.2-.5-.3z"/></svg>
+              Hacer pedido
+            </a>
+          </div>
+        </article>
+
+        <article class="producto-card">
+          <div class="producto-foto">
+            <img src="{{ url_for('static', filename='img/productos/bocadillo-rojo.jpg') }}"
+                 alt="Bocadillo rojo de guayaba cortado en cubos" loading="lazy">
+            <span class="producto-cinta">Clásico veleño</span>
+          </div>
+          <div class="producto-cuerpo">
+            <h3 class="producto-titulo">Bocadillo rojo</h3>
+            <p class="producto-desc">El bocadillo rojo de guayaba, dulce y tradicional, hecho con la guayaba regional de nuestras fincas.</p>
+            <ul class="producto-tags">
+              <li>🍓 Guayaba roja</li><li>🏡 Tradicional</li><li>🤝 Pedidos por encargo</li>
+            </ul>
+            <a class="producto-btn" target="_blank" rel="noopener"
+               href="{{ wa_base ~ '?text=' ~ ('Hola, quiero hacer un pedido de Bocadillo rojo. ¿Me pueden dar precio y disponibilidad?' | urlencode) }}">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.100c-.2-.1-1.500-.7-1.700-.8s-.4-.1-.6.100-.7.8-.8 1-.3.2-.6.1a6.700 6.700 0 0 1-3.300-2.900c-.3-.4.300-.4.800-1.400.1-.2 0-.3 0-.5s-.6-1.400-.8-1.900-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.300 3 3 0 0 0-.9 2.200 5.200 5.200 0 0 0 1.100 2.800 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.2-.2-.5-.3z"/></svg>
+              Hacer pedido
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="nutricion-section" id="nutricion">
     <div class="section-wrap section-center">
       <span class="section-label">🍊 Beneficios nutricionales</span>
@@ -458,6 +512,10 @@
     <a href="#" class="active">
       <span class="nav-icon">🏠</span>
       Inicio
+    </a>
+    <a href="#productos">
+      <span class="nav-icon">🍯</span>
+      Productos
     </a>
     <a href="#calidad">
       <span class="nav-icon">📊</span>

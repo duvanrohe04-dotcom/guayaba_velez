@@ -94,7 +94,12 @@ def run_seed():
         else:
             print('Ya existen usuarios; no se crea ni se modifica ninguno.')
 
-        Empresa.get_instance()  # crea la fila id=1 si no existe
+        empresa = Empresa.get_instance()  # crea la fila id=1 si no existe
+        # Corrección de apellido: es "Díaz" (con z), no "Días". Solo toca ese
+        # error exacto; cualquier otro nombre que el cliente ponga se respeta.
+        if empresa.nombre and 'Días' in empresa.nombre and 'Bocadillos' in empresa.nombre:
+            empresa.nombre = empresa.nombre.replace('Días', 'Díaz')
+            print(f'Nombre corregido a: {empresa.nombre.strip()}')
 
         for datos in CONTENIDO_BASE:
             existente = Contenido.get_por_seccion(datos['seccion'])
