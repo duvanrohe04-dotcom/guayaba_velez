@@ -17,9 +17,9 @@ CONTENIDO_BASE = [
         titulo='Nuestra historia',
         texto=(
             'Cultivamos la guayaba regional del municipio de Vélez en la vereda '
-            'Guayabal, a una altura aproximada de 1810 msnm. El bocadillo veleño, '
-            'elaborado con esta guayaba, cuenta con Denominación de Origen '
-            'Protegida y es reconocido en toda Colombia y en Europa.'
+            'Guayabal, a una altura aproximada de 1810 msnm, en la zona de '
+            'denominación de origen del bocadillo veleño, un dulce reconocido '
+            'en toda Colombia y en Europa.'
         ),
         orden=1,
     ),

@@ -1,4 +1,4 @@
-import os
+﻿import os
 
 from flask import render_template, redirect, url_for, jsonify, current_app
 
@@ -45,7 +45,7 @@ def manifest():
     datos = {
         'name': empresa.nombre,
         'short_name': empresa.nombre[:12],
-        'description': 'Guayaba Veleña auténtica de Vélez, Santander. Denominación de Origen Protegida.',
+        'description': 'Guayaba Veleña de la vereda Guayabal, Vélez, Santander. Producción sostenible.',
         'start_url': '/',
         'scope': '/',
         'display': 'standalone',
